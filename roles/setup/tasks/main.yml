@@ -1,0 +1,269 @@
+---
+- name: install default packages
+  community.general.pacman:
+    name: "{{ item }}"
+  with_items: "{{ packages }}"
+  become: true
+
+- name: install default python packages
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    extra_args: --user
+  with_items:
+    - awscli
+    - pgcli
+    - aws-google-auth[u2f]
+
+- name: setup rust with rustup
+  ansible.builtin.command: rustup default stable
+
+- name: install cargo based packages
+  ansible.builtin.shell: cargo install {{ item }}
+  with_items:
+    - git-trim
+
+- name: create GTK themes folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.themes
+    state: directory
+    recurse: true
+
+- name: install Dracula GTK theme
+  ansible.builtin.unarchive:
+    src: https://github.com/dracula/gtk/archive/master.tar.gz
+    dest: /home/{{ username }}/.themes
+    remote_src: true
+    extra_opts:
+      - --transform
+      - s/^gtk-master/Dracula/
+
+- name: create GTK config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/gtk-3.0
+    state: directory
+    recurse: true
+
+- name: copy gtK Config
+  ansible.builtin.copy:
+    src: gtk/settings.ini
+    dest: /home/{{ username }}/.config/gtk-3.0
+
+- name: create git config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/git
+    state: directory
+    recurse: true
+
+- name: copy git config
+  ansible.builtin.copy:
+    src: git/config
+    dest: /home/{{ username }}/.config/git
+
+- name: create GPG config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.gnupg
+    state: directory
+    recurse: true
+
+- name: copy GPG config
+  ansible.builtin.copy:
+    src: gpg/{{ item }}
+    dest: /home/{{ username }}/.gnupg
+  with_items:
+    - gpg.conf
+    - gpg-agent.conf
+
+- name: create Neovim config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/nvim
+    state: directory
+    recurse: true
+
+- name: install vim-plug
+  ansible.builtin.shell: |
+    sh -c 'curl -fLo /home/{{ username }}/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+- name: copy Neovim config
+  ansible.builtin.copy:
+    src: neovim/{{ item }}
+    dest: /home/{{ username }}/.config/nvim/{{ item }}
+  with_items:
+    - coc-settings.json
+    - init.vim
+
+- name: create Kitty config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/kitty
+    state: directory
+    recurse: true
+
+- name: copy Kitty config
+  ansible.builtin.copy:
+    src: kitty/{{ item }}
+    dest: /home/{{ username }}/.config/kitty/{{ item }}
+  with_items:
+    - dracula.conf
+    - kitty.conf
+    - zoom_toggle.py
+
+- name: create rofi config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/rofi/themes
+    state: directory
+    recurse: true
+
+- name: copy rofi config
+  ansible.builtin.copy:
+    src: rofi/{{ item }}
+    dest: /home/{{ username }}/.config/rofi/{{ item }}
+  with_items:
+    - config.rasi
+    - themes/powermenu.rasi
+    - dracula.rasi
+    - rofi-power-menu
+
+- name: set exec permissions to rofi-power-menu
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/rofi/rofi-power-menu
+    mode: 0755
+
+- name: create dunst config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/dunst
+    state: directory
+    recurse: true
+
+- name: copy dusnt config
+  ansible.builtin.copy:
+    src: dunst/dunstrc
+    dest: /home/{{ username }}/.config/dunst/dunstrc
+
+- name: install Starship prompt
+  ansible.builtin.shell: |
+    export FORCE=1
+    curl -fsSL https://starship.rs/install.sh | bash
+  become: true
+
+- name: copy Starship config
+  ansible.builtin.copy:
+    src: starship/starship.toml
+    dest: /home/{{ username }}/.config/starship.toml
+
+- name: install direnv
+  ansible.builtin.shell: curl -sfL https://direnv.net/install.sh | bash
+  become: true
+
+- name: create zsh plugins folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.zsh/plugins
+    state: directory
+
+- name: clone zsh-history-substring-search
+  git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search.git
+    dest: /home/{{ username }}/.zsh/plugins/zsh-history-substring-search
+
+- name: copy zsh config
+  ansible.builtin.copy:
+    src: zsh/{{ item }}
+    dest: /home/{{ username }}/.{{ item }}
+  with_items:
+    - zshrc
+    - profile
+
+- name: create Picom config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/picom
+    state: directory
+    recurse: true
+
+- name: copy Picom config
+  ansible.builtin.copy:
+    src: picom/picom.conf
+    dest: /home/{{ username }}/.config/picom/picom.conf
+
+- name: create dwm-status config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/dwm-status
+    state: directory
+    recurse: true
+
+- name: copy dwm-config config
+  ansible.builtin.copy:
+    src: dwm-status/dwm-status.json
+    dest: /home/{{ username }}/.config/dwm-status/dwm-status.json
+
+- name: create xsessions folder
+  ansible.builtin.file:
+    path: /usr/share/xsessions
+    owner: root
+    group: root
+    state: directory
+  become: true
+
+- name: create custom DWM xsession
+  ansible.builtin.copy:
+    src: dwm/dwm.desktop
+    dest: /usr/share/xsessions/dwm.desktop
+    owner: root
+    group: root
+  become: true
+
+- name: create systemd user folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/systemd/user
+    state: directory
+    recurse: true
+
+- name: copy password-store-sync.sh
+  ansible.builtin.copy:
+    src: password-store/password-store-sync.sh
+    dest: /usr/local/bin/password-store-sync.sh
+    mode: 0755
+    group: root
+    owner: root
+  become: true
+
+- name: copy systemd user files
+  ansible.builtin.copy:
+    src: "{{ item.path }}/{{ item.name }}"
+    dest: /home/{{ username }}/.config/systemd/user/{{ item.name }}
+  with_items:
+    - { path: dunst, name: dunst.service }
+    - { path: picom, name: picom.service }
+    - { path: udiskie, name: udiskie.service }
+    - { path: dwm, name: dwm.service }
+    - { path: xsession, name: xsession.target }
+    - { path: flameshot, name: flameshot.service }
+    - { path: lock, name: xautolock-session.service }
+    - { path: lock, name: xss-lock.service }
+    - { path: password-store, name: password-store-sync.service }
+    - { path: password-store, name: password-store-sync.timer }
+    #    - { path: dwm-status, name: dwm-status.service }
+
+- name: enable systemd user services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    daemon_reload: true
+    scope: user
+  with_items:
+    - picom.service
+    - udiskie.service
+    - dwm.service
+    - flameshot.service
+    - xautolock-session.service
+    - xss-lock.service
+    - password-store-sync.timer
+    #    - dwm-status.service
+    #
+- name: enable systemd services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    daemon_reload: true
+  with_items:
+    - lightdm.service
+    - pcscd.service
+

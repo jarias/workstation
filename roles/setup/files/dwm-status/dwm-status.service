@@ -1,0 +1,9 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/nix/store/jag74wizsqaz4k24fnp4wazp3rcnr8ky-dwm-status-1.7.1/bin/dwm-status /nix/store/2wr5c79fq69v7hj11lq8bbl9wksfpfdc-dwm-status.json
+
+[Unit]
+Description=DWM status service
+PartOf=graphical-session.target

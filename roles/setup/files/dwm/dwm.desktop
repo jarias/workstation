@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dwm
+Comment=Dynamic window manager
+Exec=/usr/bin/systemctl --user start xsession.target --wait
+Icon=dwm
+Type=XSession

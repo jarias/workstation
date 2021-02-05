@@ -1,0 +1,217 @@
+---
+- name: install ZFS using eoli3n script
+  ansible.builtin.shell: |
+    curl -s https://eoli3n.github.io/archzfs/init | bash
+
+- name: create boot partition
+  community.general.parted:
+    device: "{{ root_device }}"
+    number: 1
+    label: gpt
+    fs_type: fat32
+    name: ESP
+    flags: [boot, esp]
+    part_end: 100MiB
+    state: present
+
+- name: create root partition
+  community.general.parted:
+    device: "{{ root_device }}"
+    number: 2
+    label: gpt
+    name: root
+    part_start: 100MiB
+    state: present
+
+- name: format boot partition
+  community.general.filesystem:
+    fstype: vfat
+    dev: "{{ root_device }}-part1"
+    opts: -F 32 -n ESP
+
+- name: create ZFS pool
+  ansible.builtin.shell: |
+    zpool create -f \
+      -o ashift=9 \
+      -O acltype=posixacl       \
+      -O relatime=on            \
+      -O xattr=sa               \
+      -O dnodesize=legacy       \
+      -O normalization=formD    \
+      -O mountpoint=none        \
+      -O canmount=off           \
+      -O devices=off            \
+      -R /mnt \
+      zroot {{ root_device }}-part2
+
+- name: create zroot/ROOT ZFS dataset
+  community.general.zfs:
+    name: zroot/ROOT
+    state: present
+    extra_zfs_properties:
+      mountpoint: none
+
+- name: create zroot/ROOT/default dataset
+  community.general.zfs:
+    name: zroot/ROOT/default
+    state: present
+    extra_zfs_properties:
+      mountpoint: /
+      canmount: noauto
+
+- name: create zroot/data ZFS dataset
+  community.general.zfs:
+    name: zroot/data
+    state: present
+    extra_zfs_properties:
+      mountpoint: none
+
+- name: create zroot/data/home dataset
+  community.general.zfs:
+    name: zroot/data/home
+    state: present
+    extra_zfs_properties:
+      mountpoint: none
+      canmount: off
+
+- name: create zroot/data/home/jarias dataset
+  community.general.zfs:
+    name: zroot/data/home/jarias
+    state: present
+    extra_zfs_properties:
+      mountpoint: /home/jarias
+
+- name: create zroot/var dataset
+  community.general.zfs:
+    name: zroot/var
+    state: present
+    extra_zfs_properties:
+      canmount: off
+      mountpoint: /var
+
+- name: create zroot/var/log dataset
+  community.general.zfs:
+    name: zroot/var/log
+    state: present
+    extra_zfs_properties:
+      mountpoint: /var/log
+      "com.sun:auto-snapshot": false
+      compression: lz4
+
+- name: create zroot/var/lib dataset
+  community.general.zfs:
+    name: zroot/var/lib
+    state: present
+    extra_zfs_properties:
+      mountpoint: /var/lib
+      canmount: off
+
+- name: create zroot/var/lib/libvirt dataset
+  community.general.zfs:
+    name: zroot/var/lib/libvirt
+    state: present
+    extra_zfs_properties:
+      "com.sun:auto-snapshot": false
+
+- name: create zroot/var/lib/docker dataset
+  community.general.zfs:
+    name: zroot/var/lib/docker
+    state: present
+    extra_zfs_properties:
+      "com.sun:auto-snapshot": false
+
+- name: final ZFS setup
+  ansible.builtin.shell: |
+    set -e
+
+    zpool export zroot
+    zpool import -d {{ root_device }}-part2 -R /mnt zroot -N
+    zfs mount zroot/ROOT/default
+    zfs mount -a
+    zpool set bootfs=zroot/ROOT/default zroot
+    zpool set cachefile=/etc/zfs/zpool.cache zroot
+    mkdir -p /mnt/etc/zfs/
+    cp /etc/zfs/zpool.cache /mnt/etc/zfs/zpool.cache
+    mkdir -p /mnt/boot/EFI
+    mount {{ root_device }}-part1 /mnt/boot/EFI
+
+- name: bootstrap initial system
+  ansible.builtin.shell: |
+    pacstrap /mnt base linux linux-headers linux-firmware zfs-dkms
+
+- name: copy fstab
+  ansible.builtin.template:
+    src: fstab.j2
+    dest: /mnt/etc/fstab
+    mode: 0644
+    owner: root
+    group: root
+  tags: [continue]
+
+- name: copy pacman.conf
+  ansible.builtin.copy:
+    src: pacman.conf
+    dest: /mnt/etc/pacman.conf
+    mode: 0644
+    owner: root
+    group: root
+  tags: [continue]
+
+- name: copy mkinitcpio.conf
+  ansible.builtin.copy:
+    src: mkinitcpio.conf
+    dest: /mnt/etc/mkinitcpio.conf
+    mode: 0644
+    owner: root
+    group: root
+  tags: [continue]
+
+- name: copy vconsole.conf
+  ansible.builtin.copy:
+    src: vconsole.conf
+    dest: /mnt/etc/vconsole.conf
+    mode: 0644
+    owner: root
+    group: root
+  tags: [continue]
+
+- name: copy chroot install script
+  ansible.builtin.template:
+    src: in-chroot-install.sh.j2
+    dest: /mnt/in-chroot-install.sh
+    mode: '0755'
+  tags: [continue]
+
+- name: chroot setup
+  ansible.builtin.command: /usr/bin/arch-chroot /mnt /in-chroot-install.sh
+  tags: [continue]
+
+- name: copy lightdm.conf
+  ansible.builtin.copy:
+    src: lightdm.conf
+    dest: /mnt/etc/lightdm/lightdm.conf
+    mode: 0644
+    owner: root
+    group: root
+  tags: [continue]
+
+- name: copy lightdm-webkit2-greeter.conf
+  ansible.builtin.copy:
+    src: lightdm-webkit2-greeter.conf
+    dest: /mnt/etc/lightdm/lightdm-webkit2-greeter.conf
+    mode: 0644
+    owner: root
+    group: root
+  tags: [continue]
+
+- name: remove in-chroot-install.sh script
+  ansible.builtin.file:
+    path: /mnt/in-chroot-install.sh
+    state: absent
+  tags: [continue]
+
+- name: unmount
+  ansible.builtin.shell: |
+    umount /mnt/boot/EFI
+    zfs umount -a
+    zfs export zroot

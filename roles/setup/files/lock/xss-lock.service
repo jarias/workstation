@@ -1,0 +1,9 @@
+[Install]
+WantedBy=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/xss-lock /usr/bin/slock
+
+[Unit]
+Description=xss-lock, session locker service
+PartOf=graphical-session.target

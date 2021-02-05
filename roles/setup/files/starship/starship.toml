@@ -1,0 +1,14 @@
+[aws]
+disabled = true
+
+[nix-shell]
+disabled = true
+
+[package]
+disabled = true
+
+[python]
+disabled = true
+
+[terraform]
+disabled = true

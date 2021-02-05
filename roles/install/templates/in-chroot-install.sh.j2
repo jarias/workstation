@@ -1,0 +1,50 @@
+#!/bin/bash
+
+set -e
+
+/usr/bin/zgenhostid
+
+ln -sf /usr/share/zoneinfo/America/Costa_Rica /etc/localtime
+
+hwclock --systohc
+
+echo en_US.UTF-8 UTF-8 >/etc/locale.gen
+echo LANG=en_US.UTF-8 >/etc/locale.conf
+locale-gen
+
+hostnamectl set-hostname {{ hostname }}
+
+pacman-key -r DDF7DB817396A49B2A2723F7403BD972F75D9D76
+pacman-key --lsign-key DDF7DB817396A49B2A2723F7403BD972F75D9D76
+
+pacman -Sy
+{% for package in packages %}
+pacman --noconfirm -S {{ package }}
+{% endfor %}
+
+systemctl enable zfs.target
+systemctl enable zfs-import-cache
+systemctl enable zfs-mount
+systemctl enable zfs-import.target
+systemctl enable sshd.service
+systemctl enable ntpd.service
+systemctl enable NetworkManager.service
+systemctl enable lightdm.service
+
+mkinitcpio -p linux
+
+ZPOOL_VDEV_NAME_PATH=1 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
+ZPOOL_VDEV_NAME_PATH=1 grub-mkconfig -o /boot/grub/grub.cfg
+
+echo 'root ALL=(ALL) ALL' >/etc/sudoers
+echo '%wheel ALL=(ALL) ALL' >>/etc/sudoers
+echo '#includedir /etc/sudoers.d' >>/etc/sudoers
+
+#default password 123
+useradd -c "{{ user_fullname }}" \
+  -s /bin/zsh \
+  -G wheel \
+  -p '$6$rounds=4096$zLFpzBXFusR1$ckEnstIQ3inB3USRuyQ2zJIMUiYqVQRbeNVFYGbec.iQ9Jl8fKbQkwk27fIhJytnJ3qXW21PVLNn.gm9wCNGV1' \
+  {{ username }}
+
+exit
