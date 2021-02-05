@@ -2,5 +2,5 @@
 
 set -e
 
-/usr/bin/pass pull --rebase
-/usr/bin/pass push
+/usr/bin/pass git pull --rebase
+/usr/bin/pass git push

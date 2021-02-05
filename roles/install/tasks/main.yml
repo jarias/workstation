@@ -146,7 +146,6 @@
     mode: 0644
     owner: root
     group: root
-  tags: [continue]
 
 - name: copy pacman.conf
   ansible.builtin.copy:
@@ -155,7 +154,6 @@
     mode: 0644
     owner: root
     group: root
-  tags: [continue]
 
 - name: copy mkinitcpio.conf
   ansible.builtin.copy:
@@ -164,7 +162,6 @@
     mode: 0644
     owner: root
     group: root
-  tags: [continue]
 
 - name: copy vconsole.conf
   ansible.builtin.copy:
@@ -173,18 +170,15 @@
     mode: 0644
     owner: root
     group: root
-  tags: [continue]
 
 - name: copy chroot install script
   ansible.builtin.template:
     src: in-chroot-install.sh.j2
     dest: /mnt/in-chroot-install.sh
     mode: '0755'
-  tags: [continue]
 
 - name: chroot setup
   ansible.builtin.command: /usr/bin/arch-chroot /mnt /in-chroot-install.sh
-  tags: [continue]
 
 - name: copy lightdm.conf
   ansible.builtin.copy:
@@ -193,7 +187,6 @@
     mode: 0644
     owner: root
     group: root
-  tags: [continue]
 
 - name: copy lightdm-webkit2-greeter.conf
   ansible.builtin.copy:
@@ -202,13 +195,11 @@
     mode: 0644
     owner: root
     group: root
-  tags: [continue]
 
 - name: remove in-chroot-install.sh script
   ansible.builtin.file:
     path: /mnt/in-chroot-install.sh
     state: absent
-  tags: [continue]
 
 - name: unmount
   ansible.builtin.shell: |

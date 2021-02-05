@@ -17,10 +17,16 @@
 - name: setup rust with rustup
   ansible.builtin.command: rustup default stable
 
-- name: install cargo based packages
-  ansible.builtin.shell: cargo install {{ item }}
-  with_items:
-    - git-trim
+- name: install git-trim
+  ansible.builtin.unarchive:
+    src: https://github.com/foriequal0/git-trim/releases/download/v0.4.2/git-trim-linux-v0.4.2.tgz
+    dest: /usr/local/bin/
+    remote_src: true
+    extra_opts:
+      - --transform
+      - s/^git-trim//
+      - git-trim/git-trim
+  become: yes
 
 - name: create GTK themes folder
   ansible.builtin.file:
@@ -63,6 +69,7 @@
   ansible.builtin.file:
     path: /home/{{ username }}/.gnupg
     state: directory
+    mode: 0700
     recurse: true
 
 - name: copy GPG config
@@ -78,6 +85,10 @@
     path: /home/{{ username }}/.config/nvim
     state: directory
     recurse: true
+
+- name: install volta
+  ansible.builtin.shell: |
+    curl https://get.volta.sh | bash
 
 - name: install vim-plug
   ansible.builtin.shell: |
@@ -160,7 +171,7 @@
     state: directory
 
 - name: clone zsh-history-substring-search
-  git:
+  ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-history-substring-search.git
     dest: /home/{{ username }}/.zsh/plugins/zsh-history-substring-search
 
@@ -182,6 +193,26 @@
   ansible.builtin.copy:
     src: picom/picom.conf
     dest: /home/{{ username }}/.config/picom/picom.conf
+
+- name: clone dwm-status github repo
+  ansible.builtin.git:
+    repo: https://github.com/Gerschtli/dwm-status.git
+    dest: /tmp/dwm-status
+
+- name: build dwm-status
+  ansible.builtin.shell: |
+    cd /tmp/dwm-status
+    cargo build --release
+
+- name: install dwm-status
+  ansible.builtin.copy:
+    src: /tmp/dwm-status/target/release/dwm-status
+    dest: /usr/local/bin/dwm-status
+    mode: 0755
+    owner: root
+    group: root
+    remote_src: true
+  become: true
 
 - name: create dwm-status config folder
   ansible.builtin.file:
@@ -209,6 +240,11 @@
     owner: root
     group: root
   become: true
+
+- name: copy xprofile
+  ansible.builtin.copy:
+    src: xsession/xprofile
+    dest: /home/{{ username }}/.xprofile
 
 - name: create systemd user folder
   ansible.builtin.file:
@@ -240,7 +276,7 @@
     - { path: lock, name: xss-lock.service }
     - { path: password-store, name: password-store-sync.service }
     - { path: password-store, name: password-store-sync.timer }
-    #    - { path: dwm-status, name: dwm-status.service }
+    - { path: dwm-status, name: dwm-status.service }
 
 - name: enable systemd user services
   ansible.builtin.systemd:
@@ -256,13 +292,14 @@
     - xautolock-session.service
     - xss-lock.service
     - password-store-sync.timer
-    #    - dwm-status.service
-    #
+    - dwm-status.service
+
 - name: enable systemd services
   ansible.builtin.systemd:
     name: "{{ item }}"
     enabled: true
     daemon_reload: true
+  become: true
   with_items:
     - lightdm.service
     - pcscd.service

@@ -1,5 +1,7 @@
 packages:
+  - base-devel
   - sudo
+  - wireless_tools
   - pcsclite
   - ccid
   - feh
@@ -17,6 +19,7 @@ packages:
   - xorg-xinit
   - xf86-video-intel
   - lightdm
+  - lightdm-webkit2-greeter
   - lightdm-webkit-theme-litarvan
   - xsel
   - xdotool
@@ -43,6 +46,7 @@ packages:
   - nodejs
   - npm
   - python-pip
+  - python-poetry
   - picom
   - dunst
   - the_silver_searcher
