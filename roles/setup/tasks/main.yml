@@ -246,6 +246,11 @@
     src: xsession/xprofile
     dest: /home/{{ username }}/.xprofile
 
+- name: copy Xresources
+  ansible.builtin.copy:
+    src: xsession/Xresources
+    dest: /home/{{ username }}/.Xresources
+
 - name: create systemd user folder
   ansible.builtin.file:
     path: /home/{{ username }}/.config/systemd/user
