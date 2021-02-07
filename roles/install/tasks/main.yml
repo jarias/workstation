@@ -205,4 +205,4 @@
   ansible.builtin.shell: |
     umount /mnt/boot/EFI
     zfs umount -a
-    zfs export zroot
+    zpool export zroot
