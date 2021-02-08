@@ -1,8 +1,7 @@
 ---
 - name: install default packages
   community.general.pacman:
-    name: "{{ item }}"
-  with_items: "{{ packages }}"
+    name: "{{ packages }}"
   become: true
 
 - name: install default python packages
@@ -49,10 +48,15 @@
     state: directory
     recurse: true
 
-- name: copy gtK Config
+- name: copy GTK Config
   ansible.builtin.copy:
     src: gtk/settings.ini
     dest: /home/{{ username }}/.config/gtk-3.0
+
+- name: copy GTK 2 Config
+  ansible.builtin.copy:
+    src: gtk/gtkrc-2.0
+    dest: /home/{{ username }}/.gtkrc-2.0
 
 - name: create git config folder
   ansible.builtin.file:
