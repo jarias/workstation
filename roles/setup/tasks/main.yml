@@ -69,6 +69,17 @@
     src: git/config
     dest: /home/{{ username }}/.config/git
 
+- name: create pgcli config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/pgcli
+    state: directory
+    recurse: true
+
+- name: copy pgcli config
+  ansible.builtin.copy:
+    src: pgcli/config
+    dest: /home/{{ username }}/.config/pgcli
+
 - name: create GPG config folder
   ansible.builtin.file:
     path: /home/{{ username }}/.gnupg
@@ -313,3 +324,18 @@
     - lightdm.service
     - pcscd.service
 
+- name: kernel modules
+  ansible.builtin.copy:
+    src: "{{ item.path }}/{{ item.name }}"
+    dest: /etc/modules-load.d/{{ item.name }}
+  become: true
+  with_items:
+    - { path: v4l2loopback, name: v4l2loopback.conf }
+
+- name: kernel modules options
+  ansible.builtin.copy:
+    src: "{{ item.path }}/{{ item.name }}"
+    dest: /etc/modprobe.d/{{ item.name }}
+  become: true
+  with_items:
+    - { path: v4l2loopback, name: v4l2loopback-options.conf }

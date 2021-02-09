@@ -104,3 +104,4 @@ packages:
   - inkscape
   - gimp
   - feedreader
+  - v4l2loopback-dkms
