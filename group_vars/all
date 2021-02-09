@@ -1,4 +1,5 @@
 packages:
+  - intel-ucode
   - base-devel
   - sudo
   - wireless_tools
