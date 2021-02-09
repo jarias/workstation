@@ -339,3 +339,4 @@
   become: true
   with_items:
     - { path: v4l2loopback, name: v4l2loopback-options.conf }
+    - { path: nouveau, name: nouveau_blacklist.conf }
