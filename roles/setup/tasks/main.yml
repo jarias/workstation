@@ -4,6 +4,16 @@
     name: "{{ packages }}"
   become: true
 
+- name: download zoom arch package
+  ansible.builtin.get_url:
+    url: https://cdn.zoom.us/prod/5.5.7011.0206/zoom_x86_64.pkg.tar.xz
+    dest: /tmp/zoom_x86_64.pkg.tar.xz
+
+- name: install zoom
+  community.general.pacman:
+    name: /tmp/zoom_x86_64.pkg.tar.xz
+  become: true
+
 - name: install default python packages
   ansible.builtin.pip:
     name: "{{ item }}"
