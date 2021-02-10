@@ -108,3 +108,4 @@ packages:
   - v4l2loopback-dkms
   - libva-intel-driver
   - dmidecode
+  - ldns
