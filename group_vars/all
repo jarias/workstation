@@ -109,3 +109,12 @@ packages:
   - libva-intel-driver
   - dmidecode
   - ldns
+  - lutris
+  - lib32-vkd3d
+  - vkd3d
+  - wine
+  - lib32-mesa
+  - vulkan-intel
+  - lib32-vulkan-intel
+  - vulkan-icd-loader
+  - lib32-vulkan-icd-loader
