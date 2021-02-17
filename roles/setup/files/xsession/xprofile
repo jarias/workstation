@@ -1,3 +1,4 @@
 systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS DISPLAY SSH_AUTH_SOCK XAUTHORITY XDG_DATA_DIRS XDG_RUNTIME_DIR XDG_SESSION_ID PATH _JAVA_AWT_WM_NONREPARENTING
 setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
 autorandr -c
+feh --bg-fill ~/Pictures/wallpaper.jpg
