@@ -86,6 +86,9 @@ packages:
   - graphviz
   - pandoc
   - texlive-core
+  - texlive-latexextra
+  - texlive-fontsextra
+  - texlive-pictures
   - ncdu
   - libvirt
   - virt-manager
@@ -121,3 +124,4 @@ packages:
   - pacman-contrib
   - python2
   - usbutils
+
