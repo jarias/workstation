@@ -120,3 +120,4 @@ packages:
   - lib32-vulkan-icd-loader
   - pacman-contrib
   - python2
+  - usbutils
