@@ -332,6 +332,7 @@
   with_items:
     - lightdm.service
     - pcscd.service
+    - bluetooth.service
 
 - name: kernel modules
   ansible.builtin.copy:
