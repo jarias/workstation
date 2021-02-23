@@ -19,6 +19,7 @@ packages:
   - xorg-xrdb
   - xorg-xinit
   - xf86-video-intel
+  - xorg-xbacklight
   - lightdm
   - lightdm-webkit2-greeter
   - lightdm-webkit-theme-litarvan
