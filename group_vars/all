@@ -129,3 +129,4 @@ packages:
   - bluez
   - bluez-utils
   - htop
+  - nmap
