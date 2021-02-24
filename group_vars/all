@@ -130,3 +130,5 @@ packages:
   - bluez-utils
   - htop
   - nmap
+  - redis
+  - gnu-netcat
