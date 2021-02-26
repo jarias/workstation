@@ -80,6 +80,7 @@ packages:
   - thunar
   - libreoffice-fresh
   - remmina
+  - libvncserver
   - kubectl
   - kubectx
   - helm
