@@ -133,3 +133,4 @@ packages:
   - nmap
   - redis
   - gnu-netcat
+  - cheese
