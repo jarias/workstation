@@ -37,6 +37,7 @@ Plug 'pedrohdz/vim-yaml-folds'
 Plug 'pearofducks/ansible-vim'
 Plug 'LnL7/vim-nix'
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 

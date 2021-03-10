@@ -109,6 +109,7 @@
     path: /home/{{ username }}/.config/nvim
     state: directory
     recurse: true
+  tags: [neovim]
 
 - name: install volta
   ansible.builtin.shell: |
@@ -118,6 +119,7 @@
   ansible.builtin.shell: |
     sh -c 'curl -fLo /home/{{ username }}/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  tags: [neovim]
 
 - name: copy Neovim config
   ansible.builtin.copy:
@@ -126,6 +128,7 @@
   with_items:
     - coc-settings.json
     - init.vim
+  tags: [neovim]
 
 - name: create Kitty config folder
   ansible.builtin.file:
