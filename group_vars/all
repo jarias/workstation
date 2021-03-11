@@ -135,3 +135,4 @@ packages:
   - gnu-netcat
   - cheese
   - tumbler
+  - cura
