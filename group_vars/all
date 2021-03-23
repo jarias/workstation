@@ -136,3 +136,6 @@ packages:
   - cheese
   - tumbler
   - cura
+  - cdrdao
+  - unrar
+  - ddrescue
