@@ -1,5 +1,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'aklt/plantuml-syntax'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'editorconfig/editorconfig-vim'
