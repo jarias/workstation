@@ -140,3 +140,4 @@ packages:
   - unrar
   - ddrescue
   - filezilla
+  - sops
