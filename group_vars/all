@@ -141,3 +141,6 @@ packages:
   - ddrescue
   - filezilla
   - sops
+  - handbrake
+  - libdvdcss
+  - intel-media-sdk
