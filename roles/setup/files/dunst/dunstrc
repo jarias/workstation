@@ -32,6 +32,7 @@ sticky_history="yes"
 title="Dunst"
 transparency=5
 word_wrap="yes"
+font="Fira Code 12"
 
 [urgency_critical]
 background="#900000"
