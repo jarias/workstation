@@ -120,6 +120,13 @@
     extra_zfs_properties:
       "com.sun:auto-snapshot": false
 
+- name: create zroot/var/lib/containers dataset
+  community.general.zfs:
+    name: zroot/var/lib/containers
+    state: present
+    extra_zfs_properties:
+      "com.sun:auto-snapshot": false
+
 - name: final ZFS setup
   ansible.builtin.shell: |
     set -e

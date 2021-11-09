@@ -53,7 +53,7 @@ packages:
   - picom
   - dunst
   - the_silver_searcher
-  - docker
+  - podman
   - docker-compose
   - dos2unix
   - git
@@ -149,3 +149,4 @@ packages:
   - nvidia-prime
   - steam
   - dolphin-emu
+  - exfat-utils
