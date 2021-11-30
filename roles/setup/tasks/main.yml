@@ -158,7 +158,7 @@
   with_items:
     - config.rasi
     - themes/powermenu.rasi
-    - dracula.rasi
+    - themes/dracula.rasi
     - rofi-power-menu
 
 - name: set exec permissions to rofi-power-menu
