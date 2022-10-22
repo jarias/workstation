@@ -1,7 +1,8 @@
 /*Dracula theme based on the Purple official rofi theme*/
 
 * {
-    font: "Fira Code 16";
+    font: "Fira Code 15";
+    text-color: #f8f8f2;
     foreground: #f8f8f2;
     background-color: #282a36;
     active-background: #6272a4;
@@ -14,24 +15,27 @@
 }
 
 #window {
-    background-color: @background;
     border:           1;
     border-radius: 6;
     border-color: @bordercolor;
     padding:          5;
 }
+
 #mainbox {
     border:  0;
     padding: 0;
 }
+
 #message {
     border:       1px dash 0px 0px ;
     border-color: @separatorcolor;
     padding:      1px ;
 }
+
 #textbox {
     text-color: @foreground;
 }
+
 #listview {
     fixed-height: 0;
     border:       2px dash 0px 0px ;
@@ -45,12 +49,10 @@
     padding: 1px ;
 }
 #element.normal.normal {
-    background-color: @background;
     text-color:       @foreground;
 }
 #element.normal.urgent {
     background-color: @urgent-background;
-    text-color:       @urgent-foreground;
 }
 #element.normal.active {
     background-color: @active-background;
@@ -69,7 +71,6 @@
     text-color:       @foreground;
 }
 #element.alternate.normal {
-    background-color: @background;
     text-color:       @foreground;
 }
 #element.alternate.urgent {
@@ -120,3 +121,4 @@
     margin:     0px 0.3em 0em 0em ;
     text-color: @foreground;
 }
+

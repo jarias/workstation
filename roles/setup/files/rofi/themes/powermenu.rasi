@@ -7,8 +7,8 @@
   menu-inputbar-margin:      0px 0px;
   menu-prompt-padding:       10px 20px 10px 20px;
   menu-prompt-margin:        0px 0px 0px 0px;
-  menu-element-border:       10px;
-  menu-element-padding:      1px 1px -1px -1px;
+  menu-element-border:       1px;
+  menu-element-padding:      1px;
 }
 
 #window {
