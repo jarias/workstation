@@ -107,8 +107,8 @@ function randp() {
   < /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32}
 }
 
-
 # Aliases
+alias podman='sudo podman'
 alias ..='cd ..'
 alias a='ls -A'
 alias c='clear'

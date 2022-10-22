@@ -187,21 +187,21 @@
 - name: chroot setup
   ansible.builtin.command: /usr/bin/arch-chroot /mnt /in-chroot-install.sh
 
-- name: copy lightdm.conf
-  ansible.builtin.copy:
-    src: lightdm.conf
-    dest: /mnt/etc/lightdm/lightdm.conf
-    mode: 0644
-    owner: root
-    group: root
-
-- name: copy lightdm-webkit2-greeter.conf
-  ansible.builtin.copy:
-    src: lightdm-webkit2-greeter.conf
-    dest: /mnt/etc/lightdm/lightdm-webkit2-greeter.conf
-    mode: 0644
-    owner: root
-    group: root
+    #- name: copy lightdm.conf
+    #  ansible.builtin.copy:
+    #    src: lightdm.conf
+    #    dest: /mnt/etc/lightdm/lightdm.conf
+    #    mode: 0644
+    #    owner: root
+    #    group: root
+    #
+    #- name: copy lightdm-webkit2-greeter.conf
+    #  ansible.builtin.copy:
+    #    src: lightdm-webkit2-greeter.conf
+    #    dest: /mnt/etc/lightdm/lightdm-webkit2-greeter.conf
+    #    mode: 0644
+    #    owner: root
+    #    group: root
 
 - name: remove in-chroot-install.sh script
   ansible.builtin.file:
