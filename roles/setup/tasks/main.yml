@@ -221,36 +221,36 @@
     src: picom/picom.conf
     dest: /home/{{ username }}/.config/picom/picom.conf
 
-- name: clone dwm-status github repo
-  ansible.builtin.git:
-    repo: https://github.com/Gerschtli/dwm-status.git
-    dest: /tmp/dwm-status
-
-- name: build dwm-status
-  ansible.builtin.shell: |
-    cd /tmp/dwm-status
-    cargo build --release
-
-- name: install dwm-status
-  ansible.builtin.copy:
-    src: /tmp/dwm-status/target/release/dwm-status
-    dest: /usr/local/bin/dwm-status
-    mode: 0755
-    owner: root
-    group: root
-    remote_src: true
-  become: true
-
-- name: create dwm-status config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/dwm-status
-    state: directory
-    recurse: true
-
-- name: copy dwm-config config
-  ansible.builtin.copy:
-    src: dwm-status/dwm-status.json
-    dest: /home/{{ username }}/.config/dwm-status/dwm-status.json
+      #- name: clone dwm-status github repo
+      #  ansible.builtin.git:
+      #    repo: https://github.com/Gerschtli/dwm-status.git
+      #    dest: /tmp/dwm-status
+      #
+      #- name: build dwm-status
+      #  ansible.builtin.shell: |
+      #    cd /tmp/dwm-status
+      #    cargo build --release
+      #
+      #- name: install dwm-status
+      #  ansible.builtin.copy:
+      #    src: /tmp/dwm-status/target/release/dwm-status
+      #    dest: /usr/local/bin/dwm-status
+      #    mode: 0755
+      #    owner: root
+      #    group: root
+      #    remote_src: true
+      #  become: true
+      #
+      #- name: create dwm-status config folder
+      #  ansible.builtin.file:
+      #    path: /home/{{ username }}/.config/dwm-status
+      #    state: directory
+      #    recurse: true
+      #
+      #- name: copy dwm-config config
+      #  ansible.builtin.copy:
+      #    src: dwm-status/dwm-status.json
+      #    dest: /home/{{ username }}/.config/dwm-status/dwm-status.json
 
 - name: create xsessions folder
   ansible.builtin.file:
@@ -260,10 +260,18 @@
     state: directory
   become: true
 
-- name: create custom DWM xsession
+    #- name: create custom DWM xsession
+    #  ansible.builtin.copy:
+    #    src: dwm/dwm.desktop
+    #    dest: /usr/share/xsessions/dwm.desktop
+    #    owner: root
+    #    group: root
+    #  become: true
+
+- name: create custom BSPWM xsession
   ansible.builtin.copy:
-    src: dwm/dwm.desktop
-    dest: /usr/share/xsessions/dwm.desktop
+    src: bspwm/bspwm.desktop
+    dest: /usr/share/xsessions/bspwm.desktop
     owner: root
     group: root
   become: true
@@ -301,14 +309,13 @@
     - { path: dunst, name: dunst.service }
     - { path: picom, name: picom.service }
     - { path: udiskie, name: udiskie.service }
-    - { path: dwm, name: dwm.service }
+    - { path: bspwm, name: bspwm.service }
     - { path: xsession, name: xsession.target }
     - { path: flameshot, name: flameshot.service }
     - { path: lock, name: xautolock-session.service }
     - { path: lock, name: xss-lock.service }
     - { path: password-store, name: password-store-sync.service }
     - { path: password-store, name: password-store-sync.timer }
-    - { path: dwm-status, name: dwm-status.service }
 
 - name: enable systemd user services
   ansible.builtin.systemd:
@@ -319,12 +326,11 @@
   with_items:
     - picom.service
     - udiskie.service
-    - dwm.service
+    - bspwm.service
     - flameshot.service
     - xautolock-session.service
     - xss-lock.service
     - password-store-sync.timer
-    - dwm-status.service
 
 - name: enable systemd services
   ansible.builtin.systemd:

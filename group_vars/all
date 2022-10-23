@@ -6,7 +6,9 @@ packages:
   - pcsclite
   - ccid
   - feh
-  - dwm
+#  - dwm
+  - bspwm
+  - sxhkd
   - papirus-icon-theme
   - rofi
   - pass
@@ -21,8 +23,7 @@ packages:
   - xf86-video-intel
   - xorg-xbacklight
   - lightdm
-  - lightdm-webkit2-greeter
-  - lightdm-webkit-theme-litarvan
+  - lightdm-gtk-greeter
   - xsel
   - xdotool
   - autorandr
@@ -36,9 +37,9 @@ packages:
   - xss-lock
   - slock
   - flameshot
-  - pulseaudio
-  - pulseaudio-alsa
-  - pulseaudio-bluetooth
+  - pipewire
+  - pipewire-audio
+  - pipewire-pulse
   - pavucontrol
   - firefox
   - gnupg
@@ -54,6 +55,7 @@ packages:
   - dunst
   - the_silver_searcher
   - podman
+  - cni-plugins
   - docker-compose
   - dos2unix
   - git
@@ -99,10 +101,9 @@ packages:
   - go
   - doctl
   - github-cli
-  - jdk11-openjdk
+  - jdk17-openjdk
   - postgresql-libs
   - libusb
-  - code
   - terraform
   - terragrunt
   - packer
@@ -136,17 +137,18 @@ packages:
   - gnu-netcat
   - cheese
   - tumbler
-  - cura
-  - cdrdao
+#  - cura
+#  - cdrdao
   - unrar
-  - ddrescue
+#  - ddrescue
   - filezilla
   - sops
   - handbrake
   - libdvdcss
   - intel-media-sdk
-  - nvidia
-  - nvidia-prime
+#  - nvidia
+#  - nvidia-prime
   - steam
   - dolphin-emu
   - exfat-utils
+  - lua-language-server

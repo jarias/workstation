@@ -1,0 +1,11 @@
+[Unit]
+Description=BSPWM Window Manager
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/bspwm
+ExecStopPost=/bin/systemctl --user stop graphical-session.target
+Restart=on-failure
+
+[Install]
+RequiredBy=xsession.target
