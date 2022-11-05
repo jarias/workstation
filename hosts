@@ -1,6 +1,2 @@
-[vm]
-192.168.122.251 root_device=/dev/disk/by-id/ata-QEMU_HARDDISK_QM00003 hostname=vm user_fullname="Julio Arias" username=jarias
-192.168.122.252 root_device=/dev/disk/by-id/ata-QEMU_HARDDISK_QM00003 hostname=vm user_fullname="Julio Arias" username=jarias
-
-[laptops]
-elara root_device=/dev/disk/by-id/nvme-eui.0025385971b0ddd3 hostname=gildarts user_fullname="Julio Arias" username=jarias
+[desktop]
+fulcrum root_device=/dev/disk/by-id/nvme-eui.002538bb11423839 hostname=fulcrum user_fullname="Julio Arias" username=jarias

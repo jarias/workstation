@@ -1,12 +1,12 @@
 ---
 - name: install default packages
   community.general.pacman:
-    name: "{{ packages }}"
+    name: "{{ packages + host_packages }}"
   become: true
 
 - name: download zoom arch package
   ansible.builtin.get_url:
-    url: https://cdn.zoom.us/prod/5.5.7011.0206/zoom_x86_64.pkg.tar.xz
+    url: https://zoom.us/client/latest/zoom_x86_64.pkg.tar.xz
     dest: /tmp/zoom_x86_64.pkg.tar.xz
 
 - name: install zoom
@@ -20,10 +20,6 @@
     extra_args: --user
   with_items:
     - pgcli
-    - aws-google-auth[u2f]
-
-- name: setup rust with rustup
-  ansible.builtin.command: rustup default stable
 
 - name: install git-trim
   ansible.builtin.unarchive:
@@ -104,21 +100,15 @@
     - gpg.conf
     - gpg-agent.conf
 
-- name: create Neovim config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/nvim
-    state: directory
-    recurse: true
-  tags: [neovim]
-
 - name: install volta
   ansible.builtin.shell: |
     curl https://get.volta.sh | bash
 
-- name: install vim-plug
-  ansible.builtin.shell: |
-    sh -c 'curl -fLo /home/{{ username }}/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+- name: create Neovim config folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.config/nvim/lua
+    state: directory
+    recurse: true
   tags: [neovim]
 
 - name: copy Neovim config
@@ -126,8 +116,12 @@
     src: neovim/{{ item }}
     dest: /home/{{ username }}/.config/nvim/{{ item }}
   with_items:
-    - coc-settings.json
-    - init.vim
+    - init.lua
+    - lua/config.lua
+    - lua/maps.lua
+    - lua/plugins.lua
+    - lua/settings.lua
+    - lua/statusline.lua
   tags: [neovim]
 
 - name: create Kitty config folder
@@ -177,20 +171,10 @@
     src: dunst/dunstrc
     dest: /home/{{ username }}/.config/dunst/dunstrc
 
-- name: install Starship prompt
-  ansible.builtin.shell: |
-    export FORCE=1
-    curl -fsSL https://starship.rs/install.sh | bash
-  become: true
-
 - name: copy Starship config
   ansible.builtin.copy:
     src: starship/starship.toml
     dest: /home/{{ username }}/.config/starship.toml
-
-- name: install direnv
-  ansible.builtin.shell: curl -sfL https://direnv.net/install.sh | bash
-  become: true
 
 - name: create zsh plugins folder
   ansible.builtin.file:
@@ -221,37 +205,6 @@
     src: picom/picom.conf
     dest: /home/{{ username }}/.config/picom/picom.conf
 
-      #- name: clone dwm-status github repo
-      #  ansible.builtin.git:
-      #    repo: https://github.com/Gerschtli/dwm-status.git
-      #    dest: /tmp/dwm-status
-      #
-      #- name: build dwm-status
-      #  ansible.builtin.shell: |
-      #    cd /tmp/dwm-status
-      #    cargo build --release
-      #
-      #- name: install dwm-status
-      #  ansible.builtin.copy:
-      #    src: /tmp/dwm-status/target/release/dwm-status
-      #    dest: /usr/local/bin/dwm-status
-      #    mode: 0755
-      #    owner: root
-      #    group: root
-      #    remote_src: true
-      #  become: true
-      #
-      #- name: create dwm-status config folder
-      #  ansible.builtin.file:
-      #    path: /home/{{ username }}/.config/dwm-status
-      #    state: directory
-      #    recurse: true
-      #
-      #- name: copy dwm-config config
-      #  ansible.builtin.copy:
-      #    src: dwm-status/dwm-status.json
-      #    dest: /home/{{ username }}/.config/dwm-status/dwm-status.json
-
 - name: create xsessions folder
   ansible.builtin.file:
     path: /usr/share/xsessions
@@ -259,14 +212,6 @@
     group: root
     state: directory
   become: true
-
-    #- name: create custom DWM xsession
-    #  ansible.builtin.copy:
-    #    src: dwm/dwm.desktop
-    #    dest: /usr/share/xsessions/dwm.desktop
-    #    owner: root
-    #    group: root
-    #  become: true
 
 - name: create custom BSPWM xsession
   ansible.builtin.copy:
@@ -358,4 +303,3 @@
   become: true
   with_items:
     - { path: v4l2loopback, name: v4l2loopback-options.conf }
-    - { path: nouveau, name: nouveau_blacklist.conf }

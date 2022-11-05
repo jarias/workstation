@@ -1,1 +1,0 @@
-{"battery":{"charging":"","discharging":""},"network":{"template":"  {ESSID}"},"order":["network","time","battery"],"separator":"  ","time":{"format":"%A %e %b %Y %r"}}

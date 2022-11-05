@@ -40,7 +40,7 @@ GPG_TTY="$(tty)"
 export GPG_TTY
 gpg-connect-agent updatestartuptty /bye > /dev/null
 if [ -z "$INSIDE_EMACS" ]; then
-  eval "$(/usr/local/bin/starship init zsh)"
+  eval "$(/usr/bin/starship init zsh)"
 fi
 
 if [[ $options[zle] = on ]]; then
@@ -101,7 +101,7 @@ bindkey "${terminfo[kend]}" end-of-line
 bindkey "\e[3~" delete-char
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
-eval "$(/usr/local/sbin/direnv hook zsh)"
+eval "$(/usr/bin/direnv hook zsh)"
 
 function randp() {
   < /dev/urandom tr -dc A-Z-a-z-0-9 | head -c${1:-32}
@@ -147,5 +147,8 @@ alias tfp='terraform plan -out plan.out'
 alias timestamp='date +%s'
 alias vimdiff='nvim -d'
 
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

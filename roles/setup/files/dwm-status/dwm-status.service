@@ -1,9 +1,0 @@
-[Install]
-WantedBy=graphical-session.target
-
-[Service]
-ExecStart=/usr/local/bin/dwm-status %h/.config/dwm-status/dwm-status.json
-
-[Unit]
-Description=DWM status service
-PartOf=graphical-session.target

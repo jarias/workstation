@@ -1,7 +1,7 @@
 ---
 - name: install ZFS using eoli3n script
   ansible.builtin.shell: |
-    curl -s https://eoli3n.github.io/archzfs/init | bash
+    curl -s https://raw.githubusercontent.com/eoli3n/archiso-zfs/master/init | bash
 
 - name: create boot partition
   community.general.parted:
@@ -144,7 +144,7 @@
 
 - name: bootstrap initial system
   ansible.builtin.shell: |
-    pacstrap /mnt base linux linux-headers linux-firmware zfs-dkms
+    pacstrap /mnt base base-devel linux linux-headers linux-firmware zfs-linux
 
 - name: copy fstab
   ansible.builtin.template:
@@ -186,22 +186,6 @@
 
 - name: chroot setup
   ansible.builtin.command: /usr/bin/arch-chroot /mnt /in-chroot-install.sh
-
-    #- name: copy lightdm.conf
-    #  ansible.builtin.copy:
-    #    src: lightdm.conf
-    #    dest: /mnt/etc/lightdm/lightdm.conf
-    #    mode: 0644
-    #    owner: root
-    #    group: root
-    #
-    #- name: copy lightdm-webkit2-greeter.conf
-    #  ansible.builtin.copy:
-    #    src: lightdm-webkit2-greeter.conf
-    #    dest: /mnt/etc/lightdm/lightdm-webkit2-greeter.conf
-    #    mode: 0644
-    #    owner: root
-    #    group: root
 
 - name: remove in-chroot-install.sh script
   ansible.builtin.file:

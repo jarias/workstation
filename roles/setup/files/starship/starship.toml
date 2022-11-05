@@ -1,9 +1,6 @@
 [aws]
 disabled = true
 
-[nix-shell]
-disabled = true
-
 [package]
 disabled = true
 
