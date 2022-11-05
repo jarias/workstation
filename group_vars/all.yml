@@ -83,3 +83,4 @@ packages:
   - graphviz
   - pandoc
   - autorandr
+  - man-db
