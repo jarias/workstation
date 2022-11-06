@@ -86,3 +86,5 @@ packages:
   - man-db
   - imagemagick
   - vulkan-tools
+  - wine-staging
+  - lutris
