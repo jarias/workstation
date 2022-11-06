@@ -84,3 +84,5 @@ packages:
   - pandoc
   - autorandr
   - man-db
+  - imagemagick
+  - vulkan-tools
