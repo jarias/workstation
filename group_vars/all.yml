@@ -88,3 +88,13 @@ packages:
   - vulkan-tools
   - wine-staging
   - lutris
+  - fwupd
+  - dos2unix
+
+aur_packages:
+  - heroic-games-launcher
+  - xboxdrv
+  - neovim-links
+  - jetbrains-toolbox
+  - slack-desktop
+  - bottles
