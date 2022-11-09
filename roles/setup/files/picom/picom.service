@@ -1,5 +1,6 @@
-[Install]
-WantedBy=graphical-session.target
+[Unit]
+Description=Picom X11 compositor
+PartOf=graphical-session.target
 
 [Service]
 Environment=allow_rgb10_configs=false
@@ -7,6 +8,6 @@ ExecStart=/usr/bin/picom
 Restart=always
 RestartSec=3
 
-[Unit]
-Description=Picom X11 compositor
-PartOf=graphical-session.target
+[Install]
+WantedBy=default.target
+

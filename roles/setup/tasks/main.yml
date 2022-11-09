@@ -205,21 +205,17 @@
     src: picom/picom.conf
     dest: /home/{{ username }}/.config/picom/picom.conf
 
-- name: create xsessions folder
+- name: create BSPWM config folder
   ansible.builtin.file:
-    path: /usr/share/xsessions
-    owner: root
-    group: root
+    path: /home/{{ username }}/.config/bspwm
     state: directory
-  become: true
+    recurse: true
 
-- name: create custom BSPWM xsession
+- name: copy BSPWM config
   ansible.builtin.copy:
-    src: bspwm/bspwm.desktop
-    dest: /usr/share/xsessions/bspwm.desktop
-    owner: root
-    group: root
-  become: true
+    src: bspwm/bspwmrc
+    dest: /home/{{ username }}/.config/bspwm/bspwmrc
+    mode: 0755
 
 - name: copy xprofile
   ansible.builtin.copy:
@@ -252,15 +248,11 @@
     dest: /home/{{ username }}/.config/systemd/user/{{ item.name }}
   with_items:
     - { path: dunst, name: dunst.service }
-    - { path: picom, name: picom.service }
     - { path: udiskie, name: udiskie.service }
-    - { path: bspwm, name: bspwm.service }
-    - { path: xsession, name: xsession.target }
     - { path: flameshot, name: flameshot.service }
-    - { path: lock, name: xautolock-session.service }
-    - { path: lock, name: xss-lock.service }
     - { path: password-store, name: password-store-sync.service }
     - { path: password-store, name: password-store-sync.timer }
+  tags: [systemd]
 
 - name: enable systemd user services
   ansible.builtin.systemd:
@@ -269,13 +261,10 @@
     daemon_reload: true
     scope: user
   with_items:
-    - picom.service
     - udiskie.service
-    - bspwm.service
     - flameshot.service
-    - xautolock-session.service
-    - xss-lock.service
     - password-store-sync.timer
+  tags: [systemd]
 
 - name: enable systemd services
   ansible.builtin.systemd:
@@ -287,6 +276,7 @@
     - lightdm.service
     - pcscd.service
     - bluetooth.service
+  tags: [systemd]
 
 - name: kernel modules
   ansible.builtin.copy:

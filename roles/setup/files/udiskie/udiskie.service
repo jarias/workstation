@@ -1,9 +1,10 @@
-[Install]
-WantedBy=graphical-session.target
+[Unit]
+Description=udiskie mount daemon
+PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/udiskie -a -n -s
 
-[Unit]
-Description=udiskie mount daemon
-PartOf=graphical-session.target
+[Install]
+WantedBy=default.target
+

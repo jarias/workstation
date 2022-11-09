@@ -4,8 +4,17 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 
 ~/.local/bin/bar.sh
 
-bspc monitor DP1-3 -d 1 2 3 4 5
-bspc monitor eDP1 -d 6 7 8 9 10
+lxsession &
+xss-lock /usr/bin/slock &
+xautolock -time 10 -locker '/usr/bin/loginctl lock-session $XDG_SESSION_ID' -detectsleep &
+picom &
+
+setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl
+autorandr -c
+feh --bg-fill ~/Pictures/wallpaper.jpg
+
+bspc monitor HDMI-A-0 -d 1 2 3 4 5 6 7
+#bspc monitor eDP1 -d 8 9 10 11 12
 
 bspc config border_width 1
 bspc config window_gap 5
