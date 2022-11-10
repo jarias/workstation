@@ -47,134 +47,134 @@
       - --transform
       - s/^gtk-master/Dracula/
 
-- name: create GTK config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/gtk-3.0
-    state: directory
-    recurse: true
-
-- name: copy GTK Config
-  ansible.builtin.copy:
-    src: gtk/settings.ini
-    dest: /home/{{ username }}/.config/gtk-3.0
-
-- name: copy GTK 2 Config
-  ansible.builtin.copy:
-    src: gtk/gtkrc-2.0
-    dest: /home/{{ username }}/.gtkrc-2.0
-
-- name: create git config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/git
-    state: directory
-    recurse: true
-
-- name: copy git config
-  ansible.builtin.copy:
-    src: git/config
-    dest: /home/{{ username }}/.config/git
-
-- name: create pgcli config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/pgcli
-    state: directory
-    recurse: true
-
-- name: copy pgcli config
-  ansible.builtin.copy:
-    src: pgcli/config
-    dest: /home/{{ username }}/.config/pgcli
-
-- name: create GPG config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.gnupg
-    state: directory
-    mode: 0700
-    recurse: true
-
-- name: copy GPG config
-  ansible.builtin.copy:
-    src: gpg/{{ item }}
-    dest: /home/{{ username }}/.gnupg
-  with_items:
-    - gpg.conf
-    - gpg-agent.conf
+        #- name: create GTK config folder
+        #  ansible.builtin.file:
+        #    path: /home/{{ username }}/.config/gtk-3.0
+        #    state: directory
+        #    recurse: true
+        #
+        #- name: copy GTK Config
+        #  ansible.builtin.copy:
+        #    src: gtk/settings.ini
+        #    dest: /home/{{ username }}/.config/gtk-3.0
+        #
+        #- name: copy GTK 2 Config
+        #  ansible.builtin.copy:
+        #    src: gtk/gtkrc-2.0
+        #    dest: /home/{{ username }}/.gtkrc-2.0
+        #
+        #- name: create git config folder
+        #  ansible.builtin.file:
+        #    path: /home/{{ username }}/.config/git
+        #    state: directory
+        #    recurse: true
+        #
+        #- name: copy git config
+        #  ansible.builtin.copy:
+        #    src: git/config
+        #    dest: /home/{{ username }}/.config/git
+        #
+        #- name: create pgcli config folder
+        #  ansible.builtin.file:
+        #    path: /home/{{ username }}/.config/pgcli
+        #    state: directory
+        #    recurse: true
+        #
+        #- name: copy pgcli config
+        #  ansible.builtin.copy:
+        #    src: pgcli/config
+        #    dest: /home/{{ username }}/.config/pgcli
+        #
+        #- name: create GPG config folder
+        #  ansible.builtin.file:
+        #    path: /home/{{ username }}/.gnupg
+        #    state: directory
+        #    mode: 0700
+        #    recurse: true
+        #
+        #- name: copy GPG config
+        #  ansible.builtin.copy:
+        #    src: gpg/{{ item }}
+        #    dest: /home/{{ username }}/.gnupg
+        #  with_items:
+        #    - gpg.conf
+        #    - gpg-agent.conf
 
 - name: install volta
   ansible.builtin.shell: |
     curl https://get.volta.sh | bash
 
-- name: create Neovim config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/nvim/lua
-    state: directory
-    recurse: true
-  tags: [neovim]
+# - name: create Neovim config folder
+#   ansible.builtin.file:
+#     path: /home/{{ username }}/.config/nvim/lua
+#     state: directory
+#     recurse: true
+#   tags: [neovim]
+#
+# - name: copy Neovim config
+#   ansible.builtin.copy:
+#     src: neovim/{{ item }}
+#     dest: /home/{{ username }}/.config/nvim/{{ item }}
+#   with_items:
+#     - init.lua
+#     - lua/config.lua
+#     - lua/maps.lua
+#     - lua/plugins.lua
+#     - lua/settings.lua
+#     - lua/statusline.lua
+#   tags: [neovim]
+#
+# - name: create Kitty config folder
+#   ansible.builtin.file:
+#     path: /home/{{ username }}/.config/kitty
+#     state: directory
+#     recurse: true
+#
+# - name: copy Kitty config
+#   ansible.builtin.copy:
+#     src: kitty/{{ item }}
+#     dest: /home/{{ username }}/.config/kitty/{{ item }}
+#   with_items:
+#     - dracula.conf
+#     - kitty.conf
+#     - zoom_toggle.py
+#
+# - name: create rofi config folder
+#   ansible.builtin.file:
+#     path: /home/{{ username }}/.config/rofi/themes
+#     state: directory
+#     recurse: true
 
-- name: copy Neovim config
-  ansible.builtin.copy:
-    src: neovim/{{ item }}
-    dest: /home/{{ username }}/.config/nvim/{{ item }}
-  with_items:
-    - init.lua
-    - lua/config.lua
-    - lua/maps.lua
-    - lua/plugins.lua
-    - lua/settings.lua
-    - lua/statusline.lua
-  tags: [neovim]
-
-- name: create Kitty config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/kitty
-    state: directory
-    recurse: true
-
-- name: copy Kitty config
-  ansible.builtin.copy:
-    src: kitty/{{ item }}
-    dest: /home/{{ username }}/.config/kitty/{{ item }}
-  with_items:
-    - dracula.conf
-    - kitty.conf
-    - zoom_toggle.py
-
-- name: create rofi config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/rofi/themes
-    state: directory
-    recurse: true
-
-- name: copy rofi config
-  ansible.builtin.copy:
-    src: rofi/{{ item }}
-    dest: /home/{{ username }}/.config/rofi/{{ item }}
-  with_items:
-    - config.rasi
-    - themes/powermenu.rasi
-    - themes/dracula.rasi
-    - rofi-power-menu
-
-- name: set exec permissions to rofi-power-menu
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/rofi/rofi-power-menu
-    mode: 0755
-
-- name: create dunst config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/dunst
-    state: directory
-    recurse: true
-
-- name: copy dusnt config
-  ansible.builtin.copy:
-    src: dunst/dunstrc
-    dest: /home/{{ username }}/.config/dunst/dunstrc
-
-- name: copy Starship config
-  ansible.builtin.copy:
-    src: starship/starship.toml
-    dest: /home/{{ username }}/.config/starship.toml
+#- name: copy rofi config
+#  ansible.builtin.copy:
+#    src: rofi/{{ item }}
+#    dest: /home/{{ username }}/.config/rofi/{{ item }}
+#  with_items:
+#    - config.rasi
+#    - themes/powermenu.rasi
+#    - themes/dracula.rasi
+#    - rofi-power-menu
+#
+#- name: set exec permissions to rofi-power-menu
+#  ansible.builtin.file:
+#    path: /home/{{ username }}/.config/rofi/rofi-power-menu
+#    mode: 0755
+#
+#- name: create dunst config folder
+#  ansible.builtin.file:
+#    path: /home/{{ username }}/.config/dunst
+#    state: directory
+#    recurse: true
+#
+#- name: copy dusnt config
+#  ansible.builtin.copy:
+#    src: dunst/dunstrc
+#    dest: /home/{{ username }}/.config/dunst/dunstrc
+#
+#- name: copy Starship config
+#  ansible.builtin.copy:
+#    src: starship/starship.toml
+#    dest: /home/{{ username }}/.config/starship.toml
 
 - name: create zsh plugins folder
   ansible.builtin.file:
@@ -186,52 +186,52 @@
     repo: https://github.com/zsh-users/zsh-history-substring-search.git
     dest: /home/{{ username }}/.zsh/plugins/zsh-history-substring-search
 
-- name: copy zsh config
-  ansible.builtin.copy:
-    src: zsh/{{ item }}
-    dest: /home/{{ username }}/.{{ item }}
-  with_items:
-    - zshrc
-    - profile
+      #- name: copy zsh config
+      #  ansible.builtin.copy:
+      #    src: zsh/{{ item }}
+      #    dest: /home/{{ username }}/.{{ item }}
+      #  with_items:
+      #    - zshrc
+      #    - profile
+      #
+      #- name: create Picom config folder
+      #  ansible.builtin.file:
+      #    path: /home/{{ username }}/.config/picom
+      #    state: directory
+      #    recurse: true
+      #
+      #- name: copy Picom config
+      #  ansible.builtin.copy:
+      #    src: picom/picom.conf
+      #    dest: /home/{{ username }}/.config/picom/picom.conf
+      #
+      #- name: create BSPWM config folder
+      #  ansible.builtin.file:
+      #    path: /home/{{ username }}/.config/bspwm
+      #    state: directory
+      #    recurse: true
+      #
+      #- name: copy BSPWM config
+      #  ansible.builtin.copy:
+      #    src: bspwm/bspwmrc
+      #    dest: /home/{{ username }}/.config/bspwm/bspwmrc
+      #    mode: 0755
+      #
+      #- name: copy xprofile
+      #  ansible.builtin.copy:
+      #    src: xsession/xprofile
+      #    dest: /home/{{ username }}/.xprofile
 
-- name: create Picom config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/picom
-    state: directory
-    recurse: true
-
-- name: copy Picom config
-  ansible.builtin.copy:
-    src: picom/picom.conf
-    dest: /home/{{ username }}/.config/picom/picom.conf
-
-- name: create BSPWM config folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/bspwm
-    state: directory
-    recurse: true
-
-- name: copy BSPWM config
-  ansible.builtin.copy:
-    src: bspwm/bspwmrc
-    dest: /home/{{ username }}/.config/bspwm/bspwmrc
-    mode: 0755
-
-- name: copy xprofile
-  ansible.builtin.copy:
-    src: xsession/xprofile
-    dest: /home/{{ username }}/.xprofile
-
-- name: copy Xresources
-  ansible.builtin.copy:
-    src: xsession/Xresources
-    dest: /home/{{ username }}/.Xresources
-
-- name: create systemd user folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/systemd/user
-    state: directory
-    recurse: true
+      #- name: copy Xresources
+      #  ansible.builtin.copy:
+      #    src: xsession/Xresources
+      #    dest: /home/{{ username }}/.Xresources
+      #
+      #- name: create systemd user folder
+      #  ansible.builtin.file:
+      #    path: /home/{{ username }}/.config/systemd/user
+      #    state: directory
+      #    recurse: true
 
 - name: copy password-store-sync.sh
   ansible.builtin.copy:
@@ -242,17 +242,17 @@
     owner: root
   become: true
 
-- name: copy systemd user files
-  ansible.builtin.copy:
-    src: "{{ item.path }}/{{ item.name }}"
-    dest: /home/{{ username }}/.config/systemd/user/{{ item.name }}
-  with_items:
-    - { path: dunst, name: dunst.service }
-    - { path: udiskie, name: udiskie.service }
-    - { path: flameshot, name: flameshot.service }
-    - { path: password-store, name: password-store-sync.service }
-    - { path: password-store, name: password-store-sync.timer }
-  tags: [systemd]
+    #- name: copy systemd user files
+    #  ansible.builtin.copy:
+    #    src: "{{ item.path }}/{{ item.name }}"
+    #    dest: /home/{{ username }}/.config/systemd/user/{{ item.name }}
+    #  with_items:
+    #    - { path: dunst, name: dunst.service }
+    #    - { path: udiskie, name: udiskie.service }
+    #    - { path: flameshot, name: flameshot.service }
+    #    - { path: password-store, name: password-store-sync.service }
+    #    - { path: password-store, name: password-store-sync.timer }
+    #  tags: [systemd]
 
 - name: enable systemd user services
   ansible.builtin.systemd:
