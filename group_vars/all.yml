@@ -73,7 +73,6 @@ packages:
   - xdotool
   - v4l2loopback-dkms
   - starship
-  - autorandr
   - libreoffice-fresh
   - texlive-core
   - texlive-latexextra
@@ -90,6 +89,7 @@ packages:
   - lutris
   - fwupd
   - dos2unix
+  - lxsession
 
 aur_packages:
   - heroic-games-launcher
@@ -98,3 +98,8 @@ aur_packages:
   - jetbrains-toolbox
   - slack-desktop
   - bottles
+  - chatterino2-git
+  - obs-gstreamer
+  - obs-vkcapture-git
+  - lib32-obs-vkcapture-git
+
