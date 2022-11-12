@@ -90,6 +90,7 @@ packages:
   - fwupd
   - dos2unix
   - lxsession
+  - minted
 
 aur_packages:
   - heroic-games-launcher
