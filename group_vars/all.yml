@@ -78,6 +78,7 @@ packages:
   - texlive-latexextra
   - texlive-fontsextra
   - texlive-pictures
+  - texlab
   - ncdu
   - graphviz
   - pandoc
@@ -93,7 +94,6 @@ packages:
   - minted
 
 aur_packages:
-  - heroic-games-launcher
   - xboxdrv
   - neovim-links
   - jetbrains-toolbox
