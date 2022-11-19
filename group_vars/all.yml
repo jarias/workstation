@@ -92,6 +92,7 @@ packages:
   - dos2unix
   - lxsession
   - minted
+  - piper
 
 aur_packages:
   - xboxdrv
