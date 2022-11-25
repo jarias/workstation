@@ -93,6 +93,7 @@ packages:
   - lxsession
   - minted
   - piper
+  - liquidctl
 
 aur_packages:
   - xboxdrv
@@ -104,4 +105,4 @@ aur_packages:
   - obs-gstreamer
   - obs-vkcapture-git
   - lib32-obs-vkcapture-git
-
+  - coolero
