@@ -89,8 +89,14 @@
 
 - name: copy volume-set.sh
   ansible.builtin.copy:
-    src: volume/volume-set.sh
+    src: audio/volume-set.sh
     dest: /home/{{ username }}/.local/bin/volume-set.sh
+    mode: 0755
+
+- name: copy change-audio-output.sh
+  ansible.builtin.copy:
+    src: audio/change-audio-output.sh
+    dest: /home/{{ username }}/.local/bin/change-audio-output.sh
     mode: 0755
 
 - name: create systemd user folder
