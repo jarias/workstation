@@ -96,6 +96,9 @@ packages:
   - liquidctl
   - libva-mesa-driver
   - libva-utils
+  - aws-cli-v2
+  - inkscape
+  - cheese
 
 aur_packages:
   - xboxdrv
@@ -108,3 +111,4 @@ aur_packages:
   - lib32-obs-vkcapture-git
   - coolero
   - heroic-games-launcher-bin
+  - protonup-qt-bin
