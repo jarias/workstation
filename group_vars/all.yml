@@ -1,4 +1,10 @@
 packages:
+  - neovim
+  - kitty
+  - wireplumber
+  - pipewire
+  - pipewire-pulse
+  - pipewire-jack
   - networkmanager
   - openssh
   - ntp
@@ -20,11 +26,8 @@ packages:
   - tumbler
   - podman
   - cni-plugins
-  - steam
   - mesa
   - mesa-utils
-  - mesa-vdpau
-  - vdpauinfo
   - lightdm
   - lightdm-webkit2-greeter
   - lightdm-webkit-theme-litarvan
@@ -33,10 +36,6 @@ packages:
   - jdk17-openjdk
   - gcr
   - fzf
-  - wireplumber
-  - pipewire
-  - pipewire-pulse
-  - pipewire-jack
   - bluez
   - bluez-utils
   - blueman
@@ -79,6 +78,7 @@ packages:
   - texlive-fontsextra
   - texlive-pictures
   - texlab
+  - minted
   - ncdu
   - graphviz
   - pandoc
@@ -87,28 +87,20 @@ packages:
   - imagemagick
   - vulkan-tools
   - wine-staging
-  - lutris
   - fwupd
   - dos2unix
   - lxsession
-  - minted
   - piper
-  - liquidctl
   - libva-mesa-driver
   - libva-utils
   - aws-cli-v2
   - inkscape
   - cheese
+  - libappindicator-gtk3
 
 aur_packages:
-  - xboxdrv
-  - neovim-links
+  - neovim-symlinks
   - jetbrains-toolbox
   - slack-desktop
-  - bottles
-  - chatterino2-git
-  - obs-vkcapture-git
-  - lib32-obs-vkcapture-git
   - coolero
-  - heroic-games-launcher-bin
-  - protonup-qt-bin
+
