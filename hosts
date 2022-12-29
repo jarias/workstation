@@ -1,2 +1,3 @@
 [desktop]
 fulcrum root_device=/dev/disk/by-id/nvme-eui.002538bb11423839 hostname=fulcrum user_fullname="Julio Arias" username=jarias
+elara root_device=/dev/disk/by-id/nvme-eui.002538bb11423839 hostname=elara user_fullname="Julio Arias" username=jarias

@@ -6,3 +6,4 @@ host_packages:
   - xf86-video-intel
   - vulkan-intel
   - libva-intel-driver
+video_driver: i915

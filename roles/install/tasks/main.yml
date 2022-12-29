@@ -32,7 +32,7 @@
 - name: create ZFS pool
   ansible.builtin.shell: |
     zpool create -f \
-      -o ashift=9 \
+      -o ashift=12 \
       -O acltype=posixacl       \
       -O relatime=on            \
       -O xattr=sa               \
@@ -163,8 +163,8 @@
     group: root
 
 - name: copy mkinitcpio.conf
-  ansible.builtin.copy:
-    src: mkinitcpio.conf
+  ansible.builtin.template:
+    src: mkinitcpio.conf.j2
     dest: /mnt/etc/mkinitcpio.conf
     mode: 0644
     owner: root

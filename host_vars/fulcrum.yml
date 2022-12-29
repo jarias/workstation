@@ -4,3 +4,4 @@ host_packages:
   - vulkan-radeon
 aur_packages:
   - it87-dkms-git
+video_driver: amdgpu

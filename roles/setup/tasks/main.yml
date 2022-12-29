@@ -81,12 +81,6 @@
     dest: /home/{{ username }}/.local/bin/password-store-sync.sh
     mode: 0755
 
-- name: copy bar.sh
-  ansible.builtin.copy:
-    src: polybar/bar.sh
-    dest: /home/{{ username }}/.local/bin/bar.sh
-    mode: 0755
-
 - name: copy volume-set.sh
   ansible.builtin.copy:
     src: audio/volume-set.sh
