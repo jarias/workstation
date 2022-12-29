@@ -24,16 +24,33 @@ function output_notify() {
   fi
 }
 
+function polybar_vol() {
+  icon=""
+  volume=$(echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2)*100" | bc)
+  wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED >>/dev/null
+  is_muted=$?
+
+  current_sink_name=$(wpctl inspect @DEFAULT_AUDIO_SINK@ | grep node.name | cut -d' ' -f6 | sed -E 's/"//gm;t;d')
+  if [[ $current_sink_name == "alsa_output.pci-0000_17_00.6.analog-stereo" ]]; then
+    icon=""
+  fi
+
+  if [ $is_muted -eq 0 ]; then
+    icon=""
+  fi
+  echo "${icon} ${volume%.*}%"
+}
+
 function polybar_micvol() {
+  icon=""
   volume=$(echo "$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | cut -d' ' -f2)*100" | bc)
   wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep MUTED >>/dev/null
   is_muted=$?
 
   if [ $is_muted -eq 0 ]; then
-    echo ""
-  else
-    echo " ${volume%.*}%"
+    icon=""
   fi
+  echo "${icon} ${volume%.*}%"
 }
 
 case $1 in
@@ -45,6 +62,15 @@ down)
   ;;
 mute)
   wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+  ;;
+vol)
+  polybar_vol
+  LANG=EN
+  pactl subscribe | while read -r event; do
+    if echo "$event" | grep -q "sink" || echo "$event" | grep -q "server"; then
+      polybar_vol
+    fi
+  done
   ;;
 micup)
   wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+
