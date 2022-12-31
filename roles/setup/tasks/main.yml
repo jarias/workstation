@@ -16,7 +16,7 @@
     name: status.showUntrackedFiles
     repo: /home/{{ username }}/.dotfiles
     scope: local
-    value: no
+    value: 'no'
   tags: [dotfiles]
 
 - name: download zoom arch package
