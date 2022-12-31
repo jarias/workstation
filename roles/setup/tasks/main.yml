@@ -62,6 +62,10 @@
   ansible.builtin.shell: |
     curl https://get.volta.sh | bash
 
+- name: install NodeJS via volta
+  ansible.builtin.shell: |
+    /home/{{ username}}/.volta/bin/volta install node
+
 - name: create zsh plugins folder
   ansible.builtin.file:
     path: /home/{{ username }}/.zsh/plugins
