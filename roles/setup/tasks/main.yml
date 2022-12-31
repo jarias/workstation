@@ -4,6 +4,21 @@
     name: "{{ packages + host_packages }}"
   become: true
 
+- name: clone dotfiles repo
+  ansible.builtin.git:
+    repo: https://github.com/jarias/dotfiles.git
+    dest: /home/{{ username }}/.dotfiles
+    bare: true
+  tags: [dotfiles]
+
+- name: config dotfiles repo
+  community.general.git_config:
+    name: status.showUntrackedFiles
+    repo: /home/{{ username }}/.dotfiles
+    scope: local
+    value: no
+  tags: [dotfiles]
+
 - name: download zoom arch package
   ansible.builtin.get_url:
     url: https://zoom.us/client/latest/zoom_x86_64.pkg.tar.xz
