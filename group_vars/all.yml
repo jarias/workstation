@@ -97,6 +97,7 @@ packages:
   - inkscape
   - cheese
   - libappindicator-gtk3
+  - terminus-font
 
 aur_packages:
   - neovim-symlinks
