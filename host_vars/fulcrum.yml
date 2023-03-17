@@ -4,7 +4,7 @@ host_packages:
   - vulkan-radeon
   - steam
   - liquidctl
-    #- lutris
+
 aur_packages:
   - it87-dkms-git
   - bottles
