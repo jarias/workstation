@@ -114,6 +114,10 @@ packages:
   - cups-pdf
   - guntenprint
   - foomatic-db-gutenprint-ppds
+  - sane
+  - sane-airscan
+  - simple-scan
+  - usbutils
 
 aur_packages:
   - neovim-symlinks
