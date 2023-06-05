@@ -108,6 +108,12 @@ packages:
   - buildah
   - nmap
   - yubikey-manager
+  - avahi
+  - nss-mdns
+  - cups
+  - cups-pdf
+  - guntenprint
+  - foomatic-db-gutenprint-ppds
 
 aur_packages:
   - neovim-symlinks
