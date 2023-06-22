@@ -118,10 +118,19 @@ packages:
   - sane-airscan
   - simple-scan
   - usbutils
+  - go
+  - gopls
 
 aur_packages:
   - neovim-symlinks
   - jetbrains-toolbox
   - slack-desktop
   - coolero
+  - phpactor
+  - pylyzer
+  - marksman-bin
+  - google-chrome
+  - droidcam
+  - visual-studio-code-bin
+  - via-bin
 
