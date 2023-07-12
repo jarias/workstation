@@ -94,6 +94,13 @@
     state: directory
     recurse: true
 
+- name: create tarsnap script
+  template:
+    src: templates/tarsnap/tarsnap.sh.j2
+    dest: /home/{{ username }}/.local/bin/tarsnap.sh
+    mode: 0755
+  tags: [tarsnap]
+
 - name: copy password-store-sync.sh
   ansible.builtin.copy:
     src: password-store/password-store-sync.sh
@@ -128,6 +135,8 @@
     - { path: flameshot, name: flameshot.service }
     - { path: password-store, name: password-store-sync.service }
     - { path: password-store, name: password-store-sync.timer }
+    - { path: tarsnap, name: tarsnap.timer }
+    - { path: tarsnap, name: tarsnap.service }
   tags: [systemd]
 
 - name: enable systemd user services
@@ -140,6 +149,7 @@
     - udiskie.service
     - flameshot.service
     - password-store-sync.timer
+    - tarsnap.timer
   tags: [systemd]
 
 - name: enable systemd services
