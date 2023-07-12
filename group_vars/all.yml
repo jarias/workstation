@@ -120,6 +120,8 @@ packages:
   - usbutils
   - go
   - gopls
+  - ripgrep
+  - fd
 
 aur_packages:
   - neovim-symlinks
