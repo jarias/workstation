@@ -122,17 +122,18 @@ packages:
   - gopls
   - ripgrep
   - fd
+  - ttf-cascadia-code
+  - kubectl
+  - tarsnap
 
 aur_packages:
   - neovim-symlinks
   - jetbrains-toolbox
   - slack-desktop
-  - coolero
-  - phpactor
-  - pylyzer
-  - marksman-bin
+    #  - coolero
   - google-chrome
   - droidcam
   - visual-studio-code-bin
-  - via-bin
+  - appimagelauncher
+  - git-trim-bin
 

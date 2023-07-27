@@ -190,13 +190,13 @@
   become: true
   tags: [xorg]
 
-- name: copy xorg monitor config
-  ansible.builtin.copy:
-    src: xorg/10-monitor-{{ hostname }}.conf
-    dest: /etc/X11/xorg.conf.d/10-monitor.conf
-    mode: 0644
-    owner: root
-    group: root
-  become: true
-  tags: [xorg]
+    #- name: copy xorg monitor config
+    #  ansible.builtin.copy:
+    #    src: xorg/10-monitor-{{ hostname }}.conf
+    #    dest: /etc/X11/xorg.conf.d/10-monitor.conf
+    #    mode: 0644
+    #    owner: root
+    #    group: root
+    #  become: true
+    #  tags: [xorg]
 
