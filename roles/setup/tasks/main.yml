@@ -27,16 +27,6 @@
     value: 'no'
   tags: [dotfiles]
 
-- name: download zoom arch package
-  ansible.builtin.get_url:
-    url: https://zoom.us/client/latest/zoom_x86_64.pkg.tar.xz
-    dest: /tmp/zoom_x86_64.pkg.tar.xz
-
-- name: install zoom
-  community.general.pacman:
-    name: /tmp/zoom_x86_64.pkg.tar.xz
-  become: true
-
 - name: create GTK themes folder
   ansible.builtin.file:
     path: /home/{{ username }}/.themes

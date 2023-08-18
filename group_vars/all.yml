@@ -134,6 +134,9 @@ packages:
   - xorg-xwayland
   - xorg-xinput
   - sway
+  - cifs-utils
+  - handbrake
+  - thunderbird
 
 aur_packages:
   - neovim-symlinks
@@ -144,4 +147,5 @@ aur_packages:
   - visual-studio-code-bin
   - appimagelauncher
   - git-trim-bin
+  - makemkv
 
