@@ -1,3 +1,8 @@
+systemd_user_services:
+  - udiskie.service
+  - flameshot.service
+  - password-store-sync.timer
+
 packages:
   - neovim
   - kitty
@@ -126,12 +131,14 @@ packages:
   - kubectl
   - tarsnap
   - pgcli
+  - xorg-xwayland
+  - xorg-xinput
+  - sway
 
 aur_packages:
   - neovim-symlinks
   - jetbrains-toolbox
   - slack-desktop
-    #  - coolero
   - google-chrome
   - droidcam
   - visual-studio-code-bin

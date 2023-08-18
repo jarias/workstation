@@ -1,3 +1,6 @@
+host_systemd_user_services:
+  - tarsnap.timer
+
 host_packages:
   - amd-ucode
   - xf86-video-amdgpu
@@ -5,12 +8,12 @@ host_packages:
   - steam
   - liquidctl
 
-aur_packages:
+host_aur_packages:
   - it87-dkms-git
   - bottles
   - obs-vkcapture-git
   - lib32-obs-vkcapture-git
-    #- protonup-qt-bin
   - xboxdrv
   - cemu-bin
+
 video_driver: amdgpu

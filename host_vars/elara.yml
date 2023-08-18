@@ -1,3 +1,5 @@
+host_systemd_user_services: []
+
 host_packages:
   - intel-ucode
   - nvidia
@@ -6,4 +8,7 @@ host_packages:
   - xf86-video-intel
   - vulkan-intel
   - libva-intel-driver
+
+host_aur_packages: []
+
 video_driver: i915

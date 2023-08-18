@@ -5,6 +5,13 @@
     update_cache: true
   become: true
 
+    #- name: install AUR packages
+    #  community.general.pacman:
+    #    name: "{{ aur_packages + host_aur_packages }}"
+    #    state: present
+    #    executable: yay
+    #  tags: [aur]
+
 - name: clone dotfiles repo
   ansible.builtin.git:
     repo: https://github.com/jarias/dotfiles.git
@@ -128,11 +135,7 @@
     enabled: true
     daemon_reload: true
     scope: user
-  with_items:
-    - udiskie.service
-    - flameshot.service
-    - password-store-sync.timer
-      #- tarsnap.timer
+  with_items: "{{ systemd_user_services + host_systemd_user_services }}"
   tags: [systemd]
 
 - name: enable systemd services
@@ -163,23 +166,16 @@
   with_items:
     - { path: v4l2loopback, name: v4l2loopback-options.conf }
 
-- name: copy xorg gpu config
+- name: copy xorg config
   ansible.builtin.copy:
-    src: xorg/20-gpu-{{ hostname }}.conf
-    dest: /etc/X11/xorg.conf.d/20-gpu.conf
+    src: "xorg/{{ item }}-{{ hostname }}.conf"
+    dest: /etc/X11/xorg.conf.d/{{ item }}.conf
     mode: 0644
     owner: root
     group: root
+  with_items:
+    - 20-gpu
+    - 10-monitor
+    - 99-libinput-custom-config
   become: true
   tags: [xorg]
-
-- name: copy xorg monitor config
-  ansible.builtin.copy:
-    src: xorg/10-monitor-{{ hostname }}.conf
-    dest: /etc/X11/xorg.conf.d/10-monitor.conf
-    mode: 0644
-    owner: root
-    group: root
-  become: true
-  tags: [xorg]
-
