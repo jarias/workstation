@@ -2,6 +2,7 @@
 - name: install default packages
   community.general.pacman:
     name: "{{ packages + host_packages }}"
+    update_cache: true
   become: true
 
 - name: clone dotfiles repo
@@ -28,24 +29,6 @@
   community.general.pacman:
     name: /tmp/zoom_x86_64.pkg.tar.xz
   become: true
-
-- name: install default python packages
-  ansible.builtin.pip:
-    name: "{{ item }}"
-    extra_args: --user
-  with_items:
-    - pgcli
-
-- name: install git-trim
-  ansible.builtin.unarchive:
-    src: https://github.com/foriequal0/git-trim/releases/download/v0.4.2/git-trim-linux-v0.4.2.tgz
-    dest: /usr/local/bin/
-    remote_src: true
-    extra_opts:
-      - --transform
-      - s/^git-trim//
-      - git-trim/git-trim
-  become: yes
 
 - name: create GTK themes folder
   ansible.builtin.file:
@@ -149,7 +132,7 @@
     - udiskie.service
     - flameshot.service
     - password-store-sync.timer
-    - tarsnap.timer
+      #- tarsnap.timer
   tags: [systemd]
 
 - name: enable systemd services
@@ -190,13 +173,13 @@
   become: true
   tags: [xorg]
 
-    #- name: copy xorg monitor config
-    #  ansible.builtin.copy:
-    #    src: xorg/10-monitor-{{ hostname }}.conf
-    #    dest: /etc/X11/xorg.conf.d/10-monitor.conf
-    #    mode: 0644
-    #    owner: root
-    #    group: root
-    #  become: true
-    #  tags: [xorg]
+- name: copy xorg monitor config
+  ansible.builtin.copy:
+    src: xorg/10-monitor-{{ hostname }}.conf
+    dest: /etc/X11/xorg.conf.d/10-monitor.conf
+    mode: 0644
+    owner: root
+    group: root
+  become: true
+  tags: [xorg]
 

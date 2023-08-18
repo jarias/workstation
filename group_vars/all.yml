@@ -112,7 +112,7 @@ packages:
   - nss-mdns
   - cups
   - cups-pdf
-  - guntenprint
+  - gutenprint
   - foomatic-db-gutenprint-ppds
   - sane
   - sane-airscan
@@ -125,6 +125,7 @@ packages:
   - ttf-cascadia-code
   - kubectl
   - tarsnap
+  - pgcli
 
 aur_packages:
   - neovim-symlinks
