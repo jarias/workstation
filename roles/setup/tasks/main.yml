@@ -57,16 +57,10 @@
     repo: https://github.com/zsh-users/zsh-history-substring-search.git
     dest: /home/{{ username }}/.zsh/plugins/zsh-history-substring-search
 
-- name: create neovim packer install dir
-  ansible.builtin.file:
-    path: /home/{{ username }}/.local/share/nvim/site/pack/packer/start
-    state: directory
-    recurse: true
-
-- name: clone neovim packer plugin repo
+- name: clone nvchad
   ansible.builtin.git:
-    repo: https://github.com/wbthomason/packer.nvim.git
-    dest: /home/{{ username }}/.local/share/nvim/site/pack/packer/start/packer.nvim
+    repo: https://github.com/NvChad/NvChad
+    dest: /home/{{ username }}/.config/nvim
     depth: 1
 
 - name: create ~/.local/bin folder
