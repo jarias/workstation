@@ -1,3 +1,6 @@
+host_kernel_modules:
+  - it87
+
 host_systemd_user_services:
   - tarsnap.timer
 

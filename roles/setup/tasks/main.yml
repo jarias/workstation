@@ -3,7 +3,8 @@
   community.general.pacman:
     name: "{{ packages + host_packages }}"
     update_cache: true
-  become: true
+  become:
+    true
 
     #- name: install AUR packages
     #  community.general.pacman:
@@ -24,7 +25,7 @@
     name: status.showUntrackedFiles
     repo: /home/{{ username }}/.dotfiles
     scope: local
-    value: 'no'
+    value: "no"
   tags: [dotfiles]
 
 - name: create GTK themes folder
@@ -142,19 +143,19 @@
 
 - name: kernel modules
   ansible.builtin.copy:
-    src: "{{ item.path }}/{{ item.name }}"
-    dest: /etc/modules-load.d/{{ item.name }}
+    src: "{{ item }}/{{ item }}.conf"
+    dest: /etc/modules-load.d/{{ item }}.conf
   become: true
-  with_items:
-    - { path: v4l2loopback, name: v4l2loopback.conf }
+  with_items: "{{ kernel_modules + host_kernel_modules }}"
+  tags: [kernel_modules]
 
 - name: kernel modules options
   ansible.builtin.copy:
-    src: "{{ item.path }}/{{ item.name }}"
-    dest: /etc/modprobe.d/{{ item.name }}
+    src: "{{ item }}/{{ item }}-options.conf"
+    dest: /etc/modprobe.d/{{ item }}.conf
   become: true
-  with_items:
-    - { path: v4l2loopback, name: v4l2loopback-options.conf }
+  with_items: "{{ kernel_modules + host_kernel_modules }}"
+  tags: [kernel_modules]
 
 - name: copy xorg config
   ansible.builtin.copy:
