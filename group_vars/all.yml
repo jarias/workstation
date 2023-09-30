@@ -1,5 +1,6 @@
 kernel_modules:
   - v4l2loopback
+  - sg
 
 systemd_user_services:
   - udiskie.service
