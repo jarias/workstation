@@ -146,11 +146,7 @@ packages:
 
 aur_packages:
   - neovim-symlinks
-  - jetbrains-toolbox
   - slack-desktop
   - google-chrome
-  - droidcam
-  - visual-studio-code-bin
   - appimagelauncher
   - git-trim-bin
-  - makemkv
