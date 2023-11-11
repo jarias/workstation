@@ -12,8 +12,8 @@ echo en_US.UTF-8 UTF-8 >/etc/locale.gen
 echo LANG=en_US.UTF-8 >/etc/locale.conf
 locale-gen
 
-pacman-key -r DDF7DB817396A49B2A2723F7403BD972F75D9D76
-pacman-key --lsign-key DDF7DB817396A49B2A2723F7403BD972F75D9D76
+pacman-key -r F75D9D76
+pacman-key --lsign-key F75D9D76
 
 pacman -Sy
 {% for package in packages %}
@@ -39,9 +39,9 @@ echo '#includedir /etc/sudoers.d' >>/etc/sudoers
 
 #default password 123
 useradd -c "{{ user_fullname }}" \
-  -s /bin/zsh \
-  -G wheel \
-  -p '$6$rounds=4096$zLFpzBXFusR1$ckEnstIQ3inB3USRuyQ2zJIMUiYqVQRbeNVFYGbec.iQ9Jl8fKbQkwk27fIhJytnJ3qXW21PVLNn.gm9wCNGV1' \
-  {{ username }}
+	-s /bin/zsh \
+	-G wheel \
+	-p '$6$rounds=4096$zLFpzBXFusR1$ckEnstIQ3inB3USRuyQ2zJIMUiYqVQRbeNVFYGbec.iQ9Jl8fKbQkwk27fIhJytnJ3qXW21PVLNn.gm9wCNGV1' \
+	{{ username }}
 
 exit

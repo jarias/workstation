@@ -1,0 +1,7 @@
+host_systemd_user_services: []
+
+host_packages: []
+
+host_aur_packages: []
+
+video_driver: i915

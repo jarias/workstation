@@ -1,2 +1,7 @@
+[server]
+archiso root_device=/dev/disk/by-id/ata-Samsung_SSD_850_EVO_M.2_250GB_S33CNX0J406433D hostname=nuc01 user_fullname="Julio Arias" username=jarias
+
+[workstation]
 fulcrum root_device=/dev/disk/by-id/nvme-eui.002538bb11423839 hostname=fulcrum user_fullname="Julio Arias" username=jarias
 elara root_device=/dev/disk/by-id/nvme-eui.ace42e00957d5f062ee4ac0000000001 hostname=elara user_fullname="Julio Arias" username=jarias
+

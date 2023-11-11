@@ -3,15 +3,7 @@
   community.general.pacman:
     name: "{{ packages + host_packages }}"
     update_cache: true
-  become:
-    true
-
-    #- name: install AUR packages
-    #  community.general.pacman:
-    #    name: "{{ aur_packages + host_aur_packages }}"
-    #    state: present
-    #    executable: yay
-    #  tags: [aur]
+  become: true
 
 - name: clone dotfiles repo
   ansible.builtin.git:
@@ -63,57 +55,6 @@
     dest: /home/{{ username }}/.config/nvim
     depth: 1
 
-- name: create ~/.local/bin folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.local/bin
-    state: directory
-    recurse: true
-
-- name: create tarsnap script
-  template:
-    src: templates/tarsnap/tarsnap.sh.j2
-    dest: /home/{{ username }}/.local/bin/tarsnap.sh
-    mode: 0755
-  tags: [tarsnap]
-
-- name: copy password-store-sync.sh
-  ansible.builtin.copy:
-    src: password-store/password-store-sync.sh
-    dest: /home/{{ username }}/.local/bin/password-store-sync.sh
-    mode: 0755
-
-- name: copy volume-set.sh
-  ansible.builtin.copy:
-    src: audio/volume-set.sh
-    dest: /home/{{ username }}/.local/bin/volume-set.sh
-    mode: 0755
-
-- name: copy change-audio-output.sh
-  ansible.builtin.copy:
-    src: audio/change-audio-output.sh
-    dest: /home/{{ username }}/.local/bin/change-audio-output.sh
-    mode: 0755
-
-- name: create systemd user folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.config/systemd/user
-    state: directory
-    recurse: true
-
-- name: copy systemd user files
-  ansible.builtin.copy:
-    src: "{{ item.path }}/{{ item.name }}"
-    dest: /home/{{ username }}/.config/systemd/user/{{ item.name }}
-  with_items:
-    - { path: dunst, name: dunst.service }
-    - { path: udiskie, name: udiskie.service }
-    - { path: flameshot, name: flameshot.service }
-    - { path: password-store, name: password-store-sync.service }
-    - { path: password-store, name: password-store-sync.timer }
-    - { path: tarsnap, name: tarsnap.timer }
-    - { path: tarsnap, name: tarsnap.service }
-  tags: [systemd]
-
 - name: enable systemd user services
   ansible.builtin.systemd:
     name: "{{ item }}"
@@ -130,7 +71,7 @@
     daemon_reload: true
   become: true
   with_items:
-    - lightdm.service
+    #    - lightdm.service
     - pcscd.service
     - bluetooth.service
   tags: [systemd]
