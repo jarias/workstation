@@ -122,6 +122,7 @@ packages:
   - python-tenacity
   - imw
   - vulkan-validation-layers
+  - handlr
 
 aur_packages:
   - neovim-symlinks
@@ -131,7 +132,11 @@ aur_packages:
   - droidcam
   - appimagelauncher
   - git-trim-bin
-  - makemkv
   - coolercontrol
   - spotify
+  - brscan5
+  - authy
   - tofi
+  - rpi-imager
+  - zoom
+  - xdg-utils-handlr

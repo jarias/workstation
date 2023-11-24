@@ -18,5 +18,8 @@ host_aur_packages:
   - cemu-bin
   - droidcam
   - makemkv
+  - amdgpu_top
+  - proton-qt
+  - sunshine
 
 video_driver: amdgpu
