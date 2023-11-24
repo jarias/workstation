@@ -8,7 +8,6 @@ systemd_user_services:
   - password-store-sync.timer
 
 packages:
-  - neovim
   - kitty
   - wireplumber
   - pipewire
@@ -16,18 +15,9 @@ packages:
   - pipewire-jack
   - pipewire-alsa
   - networkmanager
-  - openssh
-  - ntp
-  - grub
-  - efibootmgr
-  - zsh
-  - sudo
   - python
   - python-pip
   - python-setuptools
-  - xautolock
-  - xss-lock
-  - slock
   - lua-language-server
   - discord
   - jq
@@ -38,34 +28,24 @@ packages:
   - cni-plugins
   - mesa
   - mesa-utils
-  - lightdm
-  - lightdm-webkit2-greeter
-  - lightdm-webkit-theme-litarvan
   - obs-studio
   - pavucontrol
-  - jdk17-openjdk
-  - openjdk17-src
+  - jdk-openjdk
+  - openjdk-src
   - gcr
   - bluez
   - bluez-utils
   - blueman
-  - bspwm
   - ccid
   - pcsclite
   - dunst
-  - feh
   - firefox
-  - flameshot
+  - swappy
   - bc
   - htop
-  - picom
-  - polybar
-  - rofi
-  - rofi-pass
   - shfmt
   - python-pynvim
   - sshpass
-  - sxhkd
   - the_silver_searcher
   - ttf-fira-code
   - ttf-font-awesome
@@ -76,8 +56,6 @@ packages:
   - zip
   - unzip
   - vlc
-  - xsel
-  - xdotool
   - v4l2loopback-dkms
   - libreoffice-fresh
   - texlive-core
@@ -94,7 +72,6 @@ packages:
   - vulkan-tools
   - wine-staging
   - dos2unix
-  - piper
   - libva-mesa-driver
   - libva-utils
   - aws-cli-v2
@@ -144,6 +121,7 @@ packages:
   - python-dbus-next
   - python-tenacity
   - imw
+  - vulkan-validation-layers
 
 aur_packages:
   - neovim-symlinks
@@ -156,5 +134,4 @@ aur_packages:
   - makemkv
   - coolercontrol
   - spotify
-  - steamgrid
   - tofi
