@@ -12,8 +12,8 @@ echo en_US.UTF-8 UTF-8 >/etc/locale.gen
 echo LANG=en_US.UTF-8 >/etc/locale.conf
 locale-gen
 
-pacman-key -r F75D9D76
-pacman-key --lsign-key F75D9D76
+pacman-key -r 3A9917BF0DED5C13F69AC68FABEC0A1208037BE9
+pacman-key --lsign-key 3A9917BF0DED5C13F69AC68FABEC0A1208037BE9
 
 pacman -Sy
 {% for package in packages %}

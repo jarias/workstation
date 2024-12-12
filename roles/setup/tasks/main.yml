@@ -31,14 +31,6 @@
     repo: https://github.com/dracula/gtk.git
     dest: /home/{{ username }}/.themes/Dracula
 
-- name: install volta
-  ansible.builtin.shell: |
-    curl https://get.volta.sh | bash
-
-- name: install NodeJS via volta
-  ansible.builtin.shell: |
-    /home/{{ username}}/.volta/bin/volta install node
-
 - name: create zsh plugins folder
   ansible.builtin.file:
     path: /home/{{ username }}/.zsh/plugins
@@ -71,7 +63,6 @@
     daemon_reload: true
   become: true
   with_items:
-    #    - lightdm.service
     - pcscd.service
     - bluetooth.service
   tags: [systemd]
@@ -91,17 +82,3 @@
   become: true
   with_items: "{{ kernel_modules + host_kernel_modules }}"
   tags: [kernel_modules]
-
-- name: copy xorg config
-  ansible.builtin.copy:
-    src: "xorg/{{ item }}-{{ hostname }}.conf"
-    dest: /etc/X11/xorg.conf.d/{{ item }}.conf
-    mode: 0644
-    owner: root
-    group: root
-  with_items:
-    - 20-gpu
-    - 10-monitor
-    - 99-libinput-custom-config
-  become: true
-  tags: [xorg]

@@ -1,8 +1,4 @@
 ---
-#- name: install ZFS using eoli3n script
-#  ansible.builtin.shell: |
-#    curl -s https://raw.githubusercontent.com/eoli3n/archiso-zfs/master/init | bash
-
 - name: create boot partition
   community.general.parted:
     device: "{{ root_device }}"
@@ -51,6 +47,7 @@
     state: present
     extra_zfs_properties:
       mountpoint: none
+      "autobackup:offsite1": true
 
 - name: create zroot/ROOT/default dataset
   community.general.zfs:
@@ -113,6 +110,7 @@
     state: present
     extra_zfs_properties:
       "com.sun:auto-snapshot": false
+      "autobackup:offsite1": false
 
 - name: create zroot/var/lib/docker dataset
   community.general.zfs:
@@ -120,6 +118,7 @@
     state: present
     extra_zfs_properties:
       "com.sun:auto-snapshot": false
+      "autobackup:offsite1": false
 
 - name: create zroot/var/lib/containers dataset
   community.general.zfs:
@@ -127,6 +126,7 @@
     state: present
     extra_zfs_properties:
       "com.sun:auto-snapshot": false
+      "autobackup:offsite1": false
 
 - name: final ZFS setup
   ansible.builtin.shell: |
@@ -169,16 +169,7 @@
     dest: /mnt/etc/mkinitcpio.conf
     mode: 0644
     owner: root
-    group:
-      root
-
-      #- name: copy vconsole.conf
-      #  ansible.builtin.copy:
-      #    src: vconsole.conf
-      #    dest: /mnt/etc/vconsole.conf
-      #    mode: 0644
-      #    owner: root
-      #    group: root
+    group: root
 
 - name: copy chroot install script
   ansible.builtin.template:

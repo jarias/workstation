@@ -16,10 +16,8 @@ host_aur_packages:
   - obs-vkcapture-git
   - lib32-obs-vkcapture-git
   - cemu-bin
-  - droidcam
   - makemkv
   - amdgpu_top
   - proton-qt
-  - sunshine
 
 video_driver: amdgpu
