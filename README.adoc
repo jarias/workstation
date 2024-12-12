@@ -1,0 +1,15 @@
+== workstation
+
+This repo contains an Ansible project to install an configure my personal workstations
+
+== Requirements
+
+* https://python-poetry.org/[Poetry]
+
+== Setup
+
+[source,shell]
+----
+poetry install
+poetry shell
+----

@@ -1,0 +1,34 @@
+host_kernel_modules: []
+
+host_systemd_user_services: []
+
+host_packages:
+  - NetworkManager-tui
+  - blueman
+  - pinentry-gnome3
+  - gcr3
+  - pavucontrol
+  # Satty
+  - libepoxy-devel
+  - libadwaita-devel
+  - rustup
+  # Satty end
+  - fuse
+  - fzf
+  - pass
+  # Tofi
+  - meson
+  - scdoc
+  - wayland-protocols-devel
+  - freetype-devel
+  - cairo-devel
+  - pango-devel
+  - wayland-devel
+  - libxkbcommon-devel
+  - harfbuzz
+  # Tofi end
+  - "@Sway Desktop"
+
+host_aur_packages: []
+
+video_driver: apple

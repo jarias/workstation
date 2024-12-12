@@ -1,5 +1,6 @@
 [tool.poetry]
-name = "arch"
+name = "workstation"
+package-mode = false
 version = "0.1.0"
 description = ""
 authors = ["Julio Arias"]

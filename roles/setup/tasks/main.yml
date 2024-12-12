@@ -1,9 +1,19 @@
 ---
-- name: install default packages
+- name: arch | install default packages
   community.general.pacman:
     name: "{{ packages + host_packages }}"
     update_cache: true
   become: true
+  when:
+    - ansible_facts['distribution'] == "ArchLinux"
+
+- name: fedora | install default packages
+  ansible.builtin.dnf:
+    name: "{{ host_packages }}"
+    update_cache: true
+  become: true
+  when:
+    - ansible_facts['distribution'] == "Fedora"
 
 - name: clone dotfiles repo
   ansible.builtin.git:
@@ -41,12 +51,6 @@
     repo: https://github.com/zsh-users/zsh-history-substring-search.git
     dest: /home/{{ username }}/.zsh/plugins/zsh-history-substring-search
 
-- name: clone nvchad
-  ansible.builtin.git:
-    repo: https://github.com/NvChad/NvChad
-    dest: /home/{{ username }}/.config/nvim
-    depth: 1
-
 - name: enable systemd user services
   ansible.builtin.systemd:
     name: "{{ item }}"
@@ -66,6 +70,8 @@
     - pcscd.service
     - bluetooth.service
   tags: [systemd]
+  when:
+    - ansible_facts['distribution'] == "ArchLinux"
 
 - name: kernel modules
   ansible.builtin.copy:
@@ -74,6 +80,8 @@
   become: true
   with_items: "{{ kernel_modules + host_kernel_modules }}"
   tags: [kernel_modules]
+  when:
+    - ansible_facts['distribution'] == "ArchLinux"
 
 - name: kernel modules options
   ansible.builtin.copy:
@@ -82,3 +90,5 @@
   become: true
   with_items: "{{ kernel_modules + host_kernel_modules }}"
   tags: [kernel_modules]
+  when:
+    - ansible_facts['distribution'] == "ArchLinux"
