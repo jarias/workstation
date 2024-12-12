@@ -18,7 +18,6 @@ packages:
   - python
   - python-pip
   - python-setuptools
-  - lua-language-server
   - discord
   - jq
   - papirus-icon-theme
@@ -40,10 +39,8 @@ packages:
   - pcsclite
   - dunst
   - firefox
-  - swappy
   - bc
   - htop
-  - shfmt
   - python-pynvim
   - sshpass
   - the_silver_searcher
@@ -63,9 +60,7 @@ packages:
   - texlive-fontsextra
   - texlive-pictures
   - texlab
-  - minted
   - ncdu
-  - graphviz
   - pandoc
   - man-db
   - imagemagick
@@ -76,7 +71,6 @@ packages:
   - libva-utils
   - aws-cli-v2
   - inkscape
-  - cheese
   - waybar
   - terminus-font
   - postgresql-libs
@@ -111,7 +105,6 @@ packages:
   - cifs-utils
   - handbrake
   - terraform
-  - thunderbird
   - slurp
   - qt6-wayland
   - qt5-wayland
