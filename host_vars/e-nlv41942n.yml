@@ -42,6 +42,7 @@ host_packages:
   - ripgrep
   - the_silver_searcher
   - pandoc
+  - golang
 
 host_aur_packages: []
 
