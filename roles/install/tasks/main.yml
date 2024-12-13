@@ -94,6 +94,7 @@
     extra_zfs_properties:
       mountpoint: /var/log
       "com.sun:auto-snapshot": false
+      "autobackup:offsite1": false
       compression: lz4
 
 - name: create zroot/var/lib dataset
@@ -151,6 +152,14 @@
   ansible.builtin.template:
     src: fstab.j2
     dest: /mnt/etc/fstab
+    mode: 0644
+    owner: root
+    group: root
+
+- name: copy grub default config
+  ansible.builtin.copy:
+    src: grub
+    dest: /mnt/etc/default/grub
     mode: 0644
     owner: root
     group: root
