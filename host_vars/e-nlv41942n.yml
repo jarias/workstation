@@ -36,6 +36,7 @@ host_packages:
   - vlc
   - mpv
   - ImageMagick
+  - papirus-icon-theme
 
 host_aur_packages: []
 
