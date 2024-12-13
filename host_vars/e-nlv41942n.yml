@@ -21,6 +21,7 @@ host_packages:
   - meson
   - scdoc
   - wayland-protocols-devel
+  - wtype
   - freetype-devel
   - cairo-devel
   - pango-devel
@@ -37,6 +38,10 @@ host_packages:
   - mpv
   - ImageMagick
   - papirus-icon-theme
+  #- "https://github.com/ferdium/ferdium-app/releases/download/v7.0.0/Ferdium-linux-7.0.0-aarch64.rpm"
+  - ripgrep
+  - the_silver_searcher
+  - pandoc
 
 host_aur_packages: []
 

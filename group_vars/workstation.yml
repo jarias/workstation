@@ -23,8 +23,6 @@ packages:
   - papirus-icon-theme
   - thunar
   - tumbler
-  - podman
-  - cni-plugins
   - mesa
   - mesa-utils
   - obs-studio
@@ -44,12 +42,15 @@ packages:
   - python-pynvim
   - sshpass
   - the_silver_searcher
+  # Fonts
   - ttf-fira-code
   - ttf-font-awesome
   - ttf-liberation
   - otf-ipafont
   - noto-fonts
   - noto-fonts-extra
+  - terminus-font
+  # Fonts end
   - zip
   - unzip
   - vlc
@@ -65,21 +66,23 @@ packages:
   - man-db
   - imagemagick
   - vulkan-tools
-  - wine-staging
   - dos2unix
   - libva-mesa-driver
   - libva-utils
   - aws-cli-v2
   - inkscape
   - waybar
-  - terminus-font
   - postgresql-libs
   - flatpak
   - docker
   - docker-compose
-  - fuse-overlayfs
   - xreader
+  # Podman
+  - podman
   - buildah
+  - fuse-overlayfs
+  - cni-plugins
+  # Podman end
   - nmap
   - yubikey-manager
   - avahi
@@ -111,8 +114,6 @@ packages:
   - wl-clipboard
   - tailscale
   - wtype
-  - python-dbus-next
-  - python-tenacity
   - imw
   - vulkan-validation-layers
   - handlr
@@ -122,13 +123,10 @@ aur_packages:
   - jetbrains-toolbox
   - slack-desktop
   - google-chrome
-  - droidcam
   - appimagelauncher
   - git-trim-bin
   - coolercontrol
-  - spotify
   - brscan5
-  - authy
   - tofi
   - rpi-imager
   - zoom

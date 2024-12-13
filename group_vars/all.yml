@@ -17,5 +17,6 @@ packages:
   - starship
   - direnv
   - udiskie
+  - libappindicator-gtk3
 
 aur_packages: []
