@@ -30,6 +30,12 @@ host_packages:
   # Tofi end
   - udiskie
   - libappindicator-gtk3
+  - java-21-openjdk
+  - libreoffice
+  - inkscape
+  - vlc
+  - mpv
+  - ImageMagick
 
 host_aur_packages: []
 
