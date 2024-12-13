@@ -3,6 +3,7 @@ host_kernel_modules: []
 host_systemd_user_services: []
 
 host_packages:
+  - "@Sway Desktop"
   - NetworkManager-tui
   - blueman
   - pinentry-gnome3
@@ -27,7 +28,8 @@ host_packages:
   - libxkbcommon-devel
   - harfbuzz
   # Tofi end
-  - "@Sway Desktop"
+  - udiskie
+  - libappindicator-gtk3
 
 host_aur_packages: []
 
