@@ -34,6 +34,7 @@ host_packages:
   - java-21-openjdk
   - libreoffice
   - inkscape
+  - gimp
   - vlc
   - mpv
   - ImageMagick

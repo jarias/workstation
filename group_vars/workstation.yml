@@ -71,6 +71,7 @@ packages:
   - libva-utils
   - aws-cli-v2
   - inkscape
+  - gimp
   - waybar
   - postgresql-libs
   - flatpak

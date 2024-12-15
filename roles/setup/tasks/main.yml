@@ -41,6 +41,17 @@
     repo: https://github.com/dracula/gtk.git
     dest: /home/{{ username }}/.themes/Dracula
 
+- name: create icons folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.icons
+    state: directory
+
+- name: install Dracula icons
+  ansible.builtin.unarchive:
+    src: https://github.com/dracula/gtk/files/5214870/Dracula.zip
+    dest: /home/{{ username }}/.icons/
+    remote_src: yes
+
 - name: create zsh plugins folder
   ansible.builtin.file:
     path: /home/{{ username }}/.zsh/plugins
