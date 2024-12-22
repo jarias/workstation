@@ -15,6 +15,21 @@
   when:
     - ansible_facts['distribution'] == "Fedora"
 
+- name: fedora | clone nwg-displays repo
+  ansible.builtin.git:
+    repo: https://github.com/nwg-piotr/nwg-displays.git
+    dest: /tmp/nwg-displays
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+
+- name: fedora | install nwg-displays
+  ansible.builtin.shell: |
+    cd /tmp/nwg-displays
+    ./install.sh
+  become: true
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+
 - name: clone dotfiles repo
   ansible.builtin.git:
     repo: git@github.com:jarias/dotfiles.git

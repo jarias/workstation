@@ -56,11 +56,7 @@ packages:
   - vlc
   - v4l2loopback-dkms
   - libreoffice-fresh
-  - texlive-core
-  - texlive-latexextra
-  - texlive-fontsextra
-  - texlive-pictures
-  - texlab
+  - texlive
   - ncdu
   - pandoc
   - man-db

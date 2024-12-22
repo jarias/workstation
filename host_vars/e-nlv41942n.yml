@@ -44,6 +44,9 @@ host_packages:
   - the_silver_searcher
   - pandoc
   - golang
+  - azote
+  - fira-code-fonts
+  - Thunar
 
 host_aur_packages: []
 
