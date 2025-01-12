@@ -47,6 +47,7 @@ host_packages:
   - azote
   - fira-code-fonts
   - Thunar
+  - stow
 
 host_aur_packages: []
 

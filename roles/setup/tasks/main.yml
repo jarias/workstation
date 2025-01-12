@@ -33,17 +33,13 @@
 - name: clone dotfiles repo
   ansible.builtin.git:
     repo: git@github.com:jarias/dotfiles.git
-    dest: /home/{{ username }}/.dotfiles
-    bare: true
+    dest: /home/{{ username }}/dotfiles
   tags: [dotfiles]
 
-- name: config dotfiles repo
-  community.general.git_config:
-    name: status.showUntrackedFiles
-    repo: /home/{{ username }}/.dotfiles
-    scope: local
-    value: "no"
-  tags: [dotfiles]
+- name: stow the dotfiles
+  ansible.builtin.shell: | 
+    cd /home/{{ username }}/dotfiles
+    stow .
 
 - name: create GTK themes folder
   ansible.builtin.file:
@@ -66,16 +62,6 @@
     src: https://github.com/dracula/gtk/files/5214870/Dracula.zip
     dest: /home/{{ username }}/.icons/
     remote_src: yes
-
-- name: create zsh plugins folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.zsh/plugins
-    state: directory
-
-- name: clone zsh-history-substring-search
-  ansible.builtin.git:
-    repo: https://github.com/zsh-users/zsh-history-substring-search.git
-    dest: /home/{{ username }}/.zsh/plugins/zsh-history-substring-search
 
 - name: enable systemd user services
   ansible.builtin.systemd:

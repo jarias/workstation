@@ -18,5 +18,6 @@ packages:
   - direnv
   - udiskie
   - libappindicator-gtk3
+  - plymouth
 
 aur_packages: []

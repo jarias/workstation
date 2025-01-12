@@ -20,6 +20,7 @@ packages:
   - python-setuptools
   - discord
   - jq
+  - yq
   - papirus-icon-theme
   - thunar
   - tumbler
@@ -114,6 +115,10 @@ packages:
   - imw
   - vulkan-validation-layers
   - handlr
+  - stow
+  - azote
+  - nwg-displays
+  - nwg-look
 
 aur_packages:
   - neovim-symlinks
@@ -128,3 +133,4 @@ aur_packages:
   - rpi-imager
   - zoom
   - xdg-utils-handlr
+  - coppwr-bin
