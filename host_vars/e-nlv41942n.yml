@@ -49,6 +49,7 @@ host_packages:
   - Thunar
   - stow
   - ruby
+  - gnome-software
 
 host_aur_packages: []
 

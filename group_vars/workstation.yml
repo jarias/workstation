@@ -119,6 +119,7 @@ packages:
   - azote
   - nwg-displays
   - nwg-look
+  - gnome-software
 
 aur_packages:
   - neovim-symlinks
