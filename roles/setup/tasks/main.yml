@@ -27,12 +27,14 @@
     cd /tmp/nwg-displays
     ./install.sh
   become: true
+  args:
+    creates: /usr/local/bin/nwg-displays
   when:
     - ansible_facts['distribution'] == "Fedora"
 
 - name: clone dotfiles repo
   ansible.builtin.git:
-    repo: git@github.com:jarias/dotfiles.git
+    repo: https://github.com/jarias/dotfiles.git
     dest: /home/{{ username }}/dotfiles
   tags: [dotfiles]
 
@@ -40,6 +42,14 @@
   ansible.builtin.shell: | 
     cd /home/{{ username }}/dotfiles
     stow .
+
+- name: update dotfiles remote
+  community.general.git_config:
+    repo: /home/{{ username }}/dotfiles
+    scope: local
+    name: 'remote.origin.url'
+    value: git@github.com:jarias/dotfiles.git
+  tags: [dotfiles]
 
 - name: create GTK themes folder
   ansible.builtin.file:
