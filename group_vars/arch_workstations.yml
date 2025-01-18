@@ -93,7 +93,6 @@ packages:
   - unzip
   - vlc
   - v4l2loopback-dkms
-  - libreoffice-fresh
   - texlive
   - ncdu
   - pandoc
@@ -103,8 +102,6 @@ packages:
   - dos2unix
   - libva-mesa-driver
   - libva-utils
-  - inkscape
-  - gimp
   - waybar
   - postgresql-libs
   - flatpak

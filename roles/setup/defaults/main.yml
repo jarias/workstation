@@ -1,12 +1,20 @@
 ---
 kernel_modules: []
 
+host_kernel_modules: []
+
 systemd_user_services: []
+
+host_systemd_user_services: []
 
 base_packages: []
 
 packages: []
 
+host_packages: []
+
 flatpak_packages: []
+
+host_flatpak_packages: []
 
 video_driver: dummy defaults file for setup

@@ -51,6 +51,11 @@
   when:
     - ansible_facts['distribution'] == "Fedora"
 
+- name: Install flatpak apps
+  community.general.flatpak:
+    name: "{{ flatpak_packages + host_flatpak_packages }}"
+    method: user
+
 - name: clone dotfiles repo
   ansible.builtin.git:
     repo: https://github.com/jarias/dotfiles.git

@@ -16,7 +16,7 @@ pacman-key -r 3A9917BF0DED5C13F69AC68FABEC0A1208037BE9
 pacman-key --lsign-key 3A9917BF0DED5C13F69AC68FABEC0A1208037BE9
 
 pacman -Sy
-{% for package in packages %}
+{% for package in base_packages %}
 pacman --noconfirm -S {{ package }}
 {% endfor %}
 
@@ -39,9 +39,9 @@ echo '#includedir /etc/sudoers.d' >>/etc/sudoers
 
 #default password 123
 useradd -c "{{ user_fullname }}" \
-	-s /bin/zsh \
-	-G wheel \
-	-p '$6$rounds=4096$zLFpzBXFusR1$ckEnstIQ3inB3USRuyQ2zJIMUiYqVQRbeNVFYGbec.iQ9Jl8fKbQkwk27fIhJytnJ3qXW21PVLNn.gm9wCNGV1' \
-	{{ username }}
+  -s /bin/zsh \
+  -G wheel \
+  -p '$6$rounds=4096$zLFpzBXFusR1$ckEnstIQ3inB3USRuyQ2zJIMUiYqVQRbeNVFYGbec.iQ9Jl8fKbQkwk27fIhJytnJ3qXW21PVLNn.gm9wCNGV1' \
+  {{ username }}
 
 exit

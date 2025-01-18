@@ -1,0 +1,8 @@
+flatpak_packages:
+  - org.kde.kdenlive
+  - org.inkscape.Inkscape
+  - org.gimp.GIMP
+  - org.libreoffice.LibreOffice
+  - org.videolan.VLC
+  - org.freecad.FreeCAD
+
