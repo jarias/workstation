@@ -23,7 +23,6 @@ base_packages:
 packages:
   - xdg-utils-handlr
   # Personal repo
-  #- aws-cli-v2
   - neovim-symlinks
   - jetbrains-toolbox
   - slack-desktop
@@ -32,6 +31,7 @@ packages:
   - git-trim-bin
   - coolercontrol
   - brscan5
+  - brother-dcpt720dw
   - tofi
   - rpi-imager
   - zoom
