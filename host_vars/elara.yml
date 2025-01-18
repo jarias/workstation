@@ -9,6 +9,4 @@ host_packages:
   - vulkan-intel
   - libva-intel-driver
 
-host_aur_packages: []
-
 video_driver: i915

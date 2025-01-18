@@ -1,10 +1,8 @@
-host_kernel_modules: []
-
-host_systemd_user_services: []
-
-host_packages:
+base_packages:
   - "@Sway Desktop"
   - NetworkManager-tui
+
+packages:
   - blueman
   - pinentry-gnome3
   - gcr3
@@ -50,5 +48,4 @@ host_packages:
   - stow
   - ruby
   - gnome-software
-
-video_driver: apple
+  - zoxide

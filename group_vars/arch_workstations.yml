@@ -7,16 +7,55 @@ systemd_user_services:
   - dunst.service
   - password-store-sync.timer
 
+base_packages:
+  - networkmanager
+  - openssh
+  - ntp
+  - grub
+  - efibootmgr
+  - zsh
+  - sudo
+  - fwupd
+  - plymouth
+  - mesa
+  - mesa-utils
+
 packages:
+  - xdg-utils-handlr
+  # Personal repo
+  #- aws-cli-v2
+  - neovim-symlinks
+  - jetbrains-toolbox
+  - slack-desktop
+  - google-chrome
+  - appimagelauncher
+  - git-trim-bin
+  - coolercontrol
+  - brscan5
+  - tofi
+  - rpi-imager
+  - zoom
+  - coppwr-bin
+  - gamescope-git
+  - k6
+  # Personal repo end
+  - neovim
+  - git
+  - fzf
+  - starship
+  - direnv
+  - udiskie
+  - libappindicator-gtk3
   - kitty
   - wireplumber
   - pipewire
   - pipewire-pulse
   - pipewire-jack
   - pipewire-alsa
-  - networkmanager
+  - pipewire-libcamera
   - python
   - python-pip
+  - python-pipx
   - python-setuptools
   - discord
   - jq
@@ -24,8 +63,6 @@ packages:
   - papirus-icon-theme
   - thunar
   - tumbler
-  - mesa
-  - mesa-utils
   - obs-studio
   - pavucontrol
   - jdk-openjdk
@@ -66,7 +103,6 @@ packages:
   - dos2unix
   - libva-mesa-driver
   - libva-utils
-  - aws-cli-v2
   - inkscape
   - gimp
   - waybar
@@ -74,6 +110,7 @@ packages:
   - flatpak
   - docker
   - docker-compose
+  - docker-buildx
   - xreader
   # Podman
   - podman
@@ -107,12 +144,16 @@ packages:
   - handbrake
   - terraform
   - slurp
+  - qt5ct
+  - qt6ct
   - qt6-wayland
   - qt5-wayland
+  - kvantum
+  - kvantum-qt5
   - wl-clipboard
   - tailscale
   - wtype
-  - imw
+  - imv
   - vulkan-validation-layers
   - handlr
   - stow
@@ -120,18 +161,8 @@ packages:
   - nwg-displays
   - nwg-look
   - gnome-software
-
-aur_packages:
-  - neovim-symlinks
-  - jetbrains-toolbox
-  - slack-desktop
-  - google-chrome
-  - appimagelauncher
-  - git-trim-bin
-  - coolercontrol
-  - brscan5
-  - tofi
-  - rpi-imager
-  - zoom
-  - xdg-utils-handlr
-  - coppwr-bin
+  - zoxide
+  - yazi
+  - redis
+  - filezilla
+  

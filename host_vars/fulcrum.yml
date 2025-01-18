@@ -10,14 +10,12 @@ host_packages:
   - vulkan-radeon
   - steam
   - liquidctl
-
-host_aur_packages:
+  # Personal repo
   - it87-dkms-git
-  - obs-vkcapture-git
-  - lib32-obs-vkcapture-git
+  - obs-vkcapture
   - cemu-bin
   - makemkv
-  - amdgpu_top
-  - proton-qt
+  - protonup-qt
+  # Personal repo end
 
 video_driver: amdgpu

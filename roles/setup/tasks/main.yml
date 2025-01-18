@@ -1,15 +1,15 @@
 ---
 - name: arch | install default packages
   community.general.pacman:
-    name: "{{ packages + host_packages }}"
+    name: "{{ base_packages + packages + host_packages }}"
     update_cache: true
   become: true
   when:
-    - ansible_facts['distribution'] == "ArchLinux"
+    - ansible_facts['distribution'] == "Archlinux"
 
 - name: fedora | install default packages
   ansible.builtin.dnf:
-    name: "{{ host_packages }}"
+    name: "{{ base_packages + packages + host_packages }}"
     update_cache: true
   become: true
   when:
@@ -29,6 +29,25 @@
   become: true
   args:
     creates: /usr/local/bin/nwg-displays
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+
+- name: fedora | Download yazi binaries
+  ansible.builtin.unarchive:
+    src: https://github.com/sxyazi/yazi/releases/download/v0.4.2/yazi-aarch64-unknown-linux-gnu.zip
+    dest: /tmp
+    remote_src: yes
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+
+- name: fedora | Install yazi binaries
+  ansible.builtin.copy:
+    src: /tmp/yazi-aarch64-unknown-linux-gnu/{{ item }}
+    dest: /usr/local/bin/{{ item }}
+    remote_src: yes
+    mode: '0755'
+  with_items: ["ya", "yazi"]
+  become: true
   when:
     - ansible_facts['distribution'] == "Fedora"
 
@@ -93,7 +112,7 @@
     - bluetooth.service
   tags: [systemd]
   when:
-    - ansible_facts['distribution'] == "ArchLinux"
+    - ansible_facts['distribution'] == "Archlinux"
 
 - name: kernel modules
   ansible.builtin.copy:
@@ -103,7 +122,7 @@
   with_items: "{{ kernel_modules + host_kernel_modules }}"
   tags: [kernel_modules]
   when:
-    - ansible_facts['distribution'] == "ArchLinux"
+    - ansible_facts['distribution'] == "Archlinux"
 
 - name: kernel modules options
   ansible.builtin.copy:
@@ -113,4 +132,4 @@
   with_items: "{{ kernel_modules + host_kernel_modules }}"
   tags: [kernel_modules]
   when:
-    - ansible_facts['distribution'] == "ArchLinux"
+    - ansible_facts['distribution'] == "Archlinux"
