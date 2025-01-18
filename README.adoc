@@ -13,3 +13,7 @@ This repo contains an Ansible project to install an configure my personal workst
 poetry install
 poetry shell
 ----
+
+== License
+
+This repo is available under the MIT License. See https://github.com/jarias/workstation/blob/main/LICENSE[LICENSE] for the full license text.
