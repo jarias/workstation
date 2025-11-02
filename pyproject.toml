@@ -8,7 +8,7 @@ authors = ["Julio Arias"]
 [tool.poetry.dependencies]
 python = "^3.12"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 ansible-core = "^2.15.3"
 
 [build-system]

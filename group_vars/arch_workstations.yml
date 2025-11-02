@@ -21,23 +21,37 @@ base_packages:
   - mesa-utils
 
 packages:
-  - xdg-utils-handlr
   # Personal repo
+  - xdg-utils-handlr
   - neovim-symlinks
   - jetbrains-toolbox
   - slack-desktop
   - google-chrome
   - appimagelauncher
   - git-trim-bin
-  - coolercontrol
+  - coolercontrold-bin
+  - coolercontrol-bin
   - brscan5
   - brother-dcpt720dw
   - tofi
   - rpi-imager
   - zoom
   - coppwr-bin
-  - gamescope-git
   - k6
+  - elephant
+  - elephant-bluetooth
+  - elephant-calc
+  - elephant-clipboard
+  - elephant-desktopapplications
+  - elephant-files
+  - elephant-menus
+  - elephant-providerlist
+  - elephant-runner
+  - elephant-symbols
+  - elephant-todo
+  - elephant-unicode
+  - elephant-websearch
+  - walker
   # Personal repo end
   - neovim
   - git
@@ -84,8 +98,12 @@ packages:
   - ttf-fira-code
   - ttf-font-awesome
   - ttf-liberation
+  - ttf-cascadia-mono-nerd
+  - ttf-jetbrains-mono-nerd
   - otf-ipafont
   - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
   - noto-fonts-extra
   - terminus-font
   # Fonts end
@@ -120,6 +138,8 @@ packages:
   - avahi
   - nss-mdns
   - cups
+  - cups-browsed
+  - cups-filters
   - cups-pdf
   - gutenprint
   - foomatic-db-gutenprint-ppds
@@ -130,7 +150,6 @@ packages:
   - go
   - ripgrep
   - fd
-  - ttf-cascadia-code
   - kubectl
   - tarsnap
   - pgcli
@@ -152,14 +171,19 @@ packages:
   - wtype
   - imv
   - vulkan-validation-layers
-  - handlr
+  - handlr-regex
   - stow
   - azote
   - nwg-displays
   - nwg-look
   - gnome-software
+  - gnome-calculator
+  - gnome-keyring
+  - gnome-themes-extra
   - zoxide
   - yazi
   - redis
   - filezilla
-  
+  - xournalpp
+  - uwsm
+  - ruby-dory
