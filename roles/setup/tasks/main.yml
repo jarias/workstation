@@ -108,3 +108,23 @@
   tags: [kernel_modules]
   when:
     - ansible_facts['distribution'] == "Archlinux"
+
+- name: allow no password sudo pacman to wheel group
+  community.general.sudoers:
+    name: pacman
+    state: present
+    group: wheel
+    nopassword: true
+    commands: /usr/bin/pacman
+  become: true
+  tags: [sudoers]
+
+- name: allow no password sudo podman to wheel group
+  community.general.sudoers:
+    name: podman
+    state: present
+    group: wheel
+    nopassword: true
+    commands: /usr/bin/podman
+  become: true
+  tags: [sudoers]
