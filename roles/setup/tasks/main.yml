@@ -53,20 +53,6 @@
     dest: /home/{{ username }}/.icons/
     remote_src: yes
 
-- name: create applications folder
-  ansible.builtin.file:
-    path: /home/{{ username }}/.local/share/applications
-    state: directory
-  tags: [applications]
-
-- name: install applications desktop files
-  ansible.builtin.copy:
-    src: "{{ item }}.desktop"
-    dest: /home/{{ username }}/.local/share/applications
-  with_items: 
-    - imv
-  tags: [applications]
-
 - name: enable systemd user services
   ansible.builtin.systemd:
     name: "{{ item }}"
