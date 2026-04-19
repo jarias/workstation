@@ -12,6 +12,11 @@
     method: user
   tags: [applications]
 
+- name: create gnupg folder
+  ansible.builtin.file:
+    path: /home/{{ username }}/.gnupg
+    state: directory
+
 - name: clone dotfiles repo
   ansible.builtin.git:
     repo: https://github.com/jarias/dotfiles.git
