@@ -67,7 +67,7 @@ packages:
   - direnv
   - udiskie
   - libappindicator-gtk3
-  - kitty
+  - ghostty
   - wireplumber
   - pipewire
   - pipewire-pulse

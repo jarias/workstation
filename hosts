@@ -3,7 +3,4 @@ archiso root_device=/dev/disk/by-id/ata-Samsung_SSD_850_EVO_M.2_250GB_S33CNX0J40
 
 [arch_workstations]
 fulcrum ansible_connection=local root_device=/dev/disk/by-id/nvme-eui.002538bb11423839 hostname=fulcrum user_fullname="Julio Arias" username=jarias
-
-[fedora_workstations]
-e-nlv41942n hostname=e-nlv41942n user_fullname="Julio Arias" username=jarias
-
+alarm.local root_device=none hostname=alarm user_fullname="Julio Arias" username=jarias

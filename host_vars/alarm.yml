@@ -1,0 +1,13 @@
+host_kernel_modules: []
+
+host_systemd_user_services: []
+
+host_packages: []
+
+host_flatpak_packages:
+  - com.steamgriddb.SGDBoop
+  - com.usebottles.bottles
+  - io.github.lime3ds.Lime3DS
+  - io.github.shiiion.primehack
+
+video_driver: 
