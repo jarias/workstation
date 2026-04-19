@@ -3,12 +3,18 @@ kernel_modules:
   - sg
 
 systemd_user_services:
-  - udiskie.service
-  - dunst.service
   - password-store-sync.timer
+  - zfs-backup.timer
+  - udiskie.service
+  - syncthing.service
+  - mako.service
+  - idocachesrv.service
+  - elephant.service
+  - walker.service
+  - docker-hoster.service
 
 base_packages:
-  - networkmanager
+  - iwd
   - openssh
   - ntp
   - grub
@@ -74,7 +80,6 @@ packages:
   - discord
   - jq
   - yq
-  - papirus-icon-theme
   - thunar
   - tumbler
   - obs-studio
@@ -84,10 +89,10 @@ packages:
   - gcr
   - bluez
   - bluez-utils
-  - blueman
+  - bluetui
   - ccid
   - pcsclite
-  - dunst
+  - mako
   - firefox
   - bc
   - htop
@@ -186,5 +191,11 @@ packages:
   - filezilla
   - xournalpp
   - uwsm
-  - ruby-dory
   - weechat
+  - impala
+  - cdrdao
+  - gvfs-nfs
+  - gvfs-smb
+  - yaru-icon-theme
+  - papirus-icon-theme
+  - syncthing

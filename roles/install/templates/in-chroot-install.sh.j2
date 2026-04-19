@@ -20,13 +20,16 @@ pacman -Sy
 pacman --noconfirm -S {{ package }}
 {% endfor %}
 
+ln -s /usr/lib/systemd/network/89-ethernet.network.example /etc/systemd/network/89-ethernet.network
+
 systemctl enable zfs.target
 systemctl enable zfs-import-cache
 systemctl enable zfs-mount
 systemctl enable zfs-import.target
 systemctl enable sshd.service
 systemctl enable ntpd.service
-systemctl enable NetworkManager.service
+systemctl enable systemd-networkd.service
+systemctl enable iwd.service
 
 mkinitcpio -p linux
 
