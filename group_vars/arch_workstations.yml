@@ -58,6 +58,7 @@ packages:
   - elephant-unicode
   - elephant-websearch
   - walker
+  - pinta
   # Personal repo end
   - neovim
   - git
