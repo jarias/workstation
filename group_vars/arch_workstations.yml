@@ -84,7 +84,7 @@ packages:
   - thunar
   - tumbler
   - obs-studio
-  - pavucontrol
+  - wiremix
   - jdk-openjdk
   - openjdk-src
   - gcr
